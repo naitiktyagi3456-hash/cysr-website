@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CYSR | Council of Young Researchers</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+    <style>
+        :root {
+            --primary: #1e293b;
+            --accent: #2563eb;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #334155;
+            --heading: #0f172a;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: #fff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-family: 'Merriweather', serif;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        nav a {
+            color: #cbd5e1;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #fff;
+        }
+
+        .hero h2 {
+            font-family: 'Merriweather', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            color: #94a3b8;
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.8rem;
+            color: var(--heading);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 0.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .calculator-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .input-group {
+            margin-bottom: 1rem;
+        }
+
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .result-box {
+            background: #eff6ff;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 4px;
+        }
+
+        form .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        form label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: var(--primary);
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>CYSR</h1>
+        <nav>
+            <a href="#papers">Research</a>
+            <a href="#calculator">Interactive Tools</a>
+            <a href="#submit">Submit Paper</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Council of Young Researchers</h2>
+        <p>Empowering independent student researchers to publish theoretical frameworks, mathematical models, and open-source physics tools.</p>
+        <a href="#submit" class="btn">Submit Your Research</a>
+    </section>
+
+    <div class="container">
+        <section id="papers">
+            <h2 class="section-title">Featured Research</h2>
+            <div class="card">
+                <h3>A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
+                <p><strong>Author:</strong> Naitik Tyagi &bull; <em>Independent Theoretical Physics Research</em></p>
+                <br>
+                <p>This paper examines fluid dynamic models, introducing an equivalent linear elastic representation for bulk modulus and evaluating gravity-driven thinning profiles using geometric profile equations:</p>
+                
+                <p style="text-align: center; margin: 1.5rem 0; font-size: 1.2rem;">
+                    \[ r(h) = \sqrt{\frac{\kappa}{\pi \sqrt{v_0^2 + 2gh}}} \]
+                </p>
+
+                <p>Passing dimensional checks (\(\text{kg}\cdot\text{m}/\text{s}^2\)), this analytical model demonstrates geometric thinning toward terminal breakup criteria.</p>
+            </div>
+        </section>
+
+        <section id="calculator">
+            <h2 class="section-title">Interactive Model: Fluid Stream Profile</h2>
+            <div class="card">
+                <div class="calculator-grid">
+                    <div>
+                        <div class="input-group">
+                            <label for="kappa">Flow Rate \(\kappa\) (\(m^3/s\)):</label>
+                            <input type="number" id="kappa" value="0.00002" step="0.00001">
+                        </div>
+                        <div class="input-group">
+                            <label for="v0">Initial Velocity \(v_0\) (\(m/s\)):</label>
+                            <input type="number" id="v0" value="1.2" step="0.1">
+                        </div>
+                        <div class="input-group">
+                            <label for="height">Drop Height \(h\) (\(m\)):</label>
+                            <input type="number" id="height" value="0.2" step="0.05">
+                        </div>
+                        <button class="btn" onclick="calculateRadius()">Calculate Thinning Radius</button>
+                    </div>
+
+                    <div class="result-box">
+                        <h4>Calculated Outputs</h4>
+                        <p style="margin-top: 0.5rem;">Local Velocity \(v(h)\): <strong id="out-v">--</strong> m/s</p>
+                        <p style="margin-top: 0.5rem;">Calculated Radius \(r(h)\): <strong id="out-r">--</strong> mm</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="submit">
+            <h2 class="section-title">Submit Your Research Paper</h2>
+            <div class="card">
+                <form onsubmit="alert('Thank you! Your paper submission request has been logged.'); return false;">
+                    <div class="form-group">
+                        <label for="author">Author Name(s)</label>
+                        <input type="text" id="author" placeholder="e.g., Jane Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Paper Title</label>
+                        <input type="text" id="title" placeholder="e.g., Analytical Approaches to Quantum Lattice Networks" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="abstract">Abstract / Overview</label>
+                        <textarea id="abstract" rows="4" placeholder="Summary of findings, equations, or computational methods..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Abstract for Review</button>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Council of Young Researchers (CYSR). Built for open scientific dissemination.</p>
+    </footer>
+
+    <script>
+        function calculateRadius() {
+            const kappa = parseFloat(document.getElementById('kappa').value);
+            const v0 = parseFloat(document.getElementById('v0').value);
+            const h = parseFloat(document.getElementById('height').value);
+            const g = 9.81;
+
+            if (isNaN(kappa) || isNaN(v0) || isNaN(h)) {
+                alert("Please enter valid numerical parameters.");
+                return;
+            }
+
+            const v = Math.sqrt(Math.pow(v0, 2) + (2 * g * h));
+            const r_meters = Math.sqrt(kappa / (Math.PI * v));
+            const r_mm = r_meters * 1000;
+
+            document.getElementById('out-v').innerText = v.toFixed(3);
+            document.getElementById('out-r').innerText = r_mm.toFixed(3);
+        }
+
+        window.onload = calculateRadius;
+    </script>
+</body>
+</html>
