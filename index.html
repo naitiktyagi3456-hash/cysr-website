@@ -1,536 +1,1318 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CYSR | Council of Young Researchers</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
-    <style>
-        :root {
-            --primary: #1e293b;
-            --accent: #2563eb;
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text: #334155;
-            --heading: #0f172a;
-            --success: #15803d;
-            --warning: #b45309;
-            --danger: #b91c1c;
-            --quote-bg: #eef2ff;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYSR | Council of Young Researchers</title>
+  <meta name="description" content="Council of Young Researchers (CYSR) empowers students with open research, innovation, Nobel-inspired discovery, and AI-enabled academic exploration." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --panel: #ffffff;
+      --panel-soft: #eef3ff;
+      --primary: #112240;
+      --primary-2: #1d3557;
+      --secondary: #3a86ff;
+      --secondary-2: #7c3aed;
+      --accent: #f5b700;
+      --text: #1f2937;
+      --muted: #5f6c85;
+      --line: #e5e7eb;
+      --success: #0f766e;
+      --danger: #dc2626;
+      --shadow: 0 18px 45px rgba(17, 34, 64, 0.12);
+      --radius: 22px;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    * { box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-        }
+    html { scroll-behavior: smooth; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(122, 92, 255, 0.08), transparent 25%),
+        radial-gradient(circle at bottom right, rgba(58, 134, 255, 0.08), transparent 30%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        a {
-            color: inherit;
-        }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
 
-        header {
-            background-color: var(--primary);
-            color: #fff;
-            padding: 1.5rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 10;
-        }
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-        header h1 {
-            font-family: 'Merriweather', serif;
-            font-size: 1.5rem;
-            letter-spacing: 0.5px;
-        }
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(17, 34, 64, 0.88);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
 
-        nav {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
+    .topbar {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 20px;
+    }
 
-        nav a {
-            color: #cbd5e1;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
 
-        nav a:hover {
-            color: #fff;
-        }
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-2));
+      box-shadow: 0 10px 22px rgba(58, 134, 255, 0.4);
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
 
-        .hero {
-            text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            color: #fff;
-        }
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
 
-        .hero h2 {
-            font-family: 'Merriweather', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            margin-bottom: 1rem;
-        }
+    .nav a {
+      transition: color 0.2s ease;
+    }
 
-        .hero p {
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            color: #94a3b8;
-            font-size: 1.1rem;
-        }
+    .nav a:hover { color: #fff; }
 
-        .btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-            text-decoration: none;
-            font-size: 1rem;
-        }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
 
-        .btn:hover {
-            background-color: #1d4ed8;
-        }
+    .explore-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
 
-        .btn.secondary {
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.35);
-            color: #fff;
-            margin-left: 0.75rem;
-        }
+    .explore-btn:hover {
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.12);
+    }
 
-        .btn.secondary:hover {
-            background: rgba(255,255,255,0.08);
-        }
+    .menu-dots {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 3rem 1.5rem;
-        }
+    .menu-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #fff;
+      display: block;
+    }
 
-        .section-title {
-            font-family: 'Merriweather', serif;
-            font-size: 1.8rem;
-            color: var(--heading);
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid #e2e8f0;
-            padding-bottom: 0.5rem;
-        }
+    .explore-panel {
+      position: absolute;
+      right: max(16px, calc((100vw - 1180px)/2 + 16px));
+      top: 90px;
+      width: min(300px, calc(100vw - 32px));
+      background: rgba(15, 23, 42, 0.96);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      padding: 12px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      transition: all 0.2s ease;
+      z-index: 25;
+    }
 
-        .research-grid,
-        .tool-grid,
-        .stats-grid {
-            display: grid;
-            gap: 1.5rem;
-        }
+    .explore-panel.open {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
 
-        .research-grid {
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        }
+    .explore-panel a {
+      display: block;
+      color: #edf3ff;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
 
-        .tool-grid {
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        }
+    .explore-panel a:hover {
+      background: rgba(255,255,255,0.06);
+    }
 
-        .stats-grid {
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        }
+    .hero {
+      padding: 72px 0 34px;
+      background: linear-gradient(135deg, #0d1b2a 0%, #152c4a 42%, #1d3557 100%);
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .card {
-            background: var(--card-bg);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
-        }
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(96, 165, 250, 0.28), transparent 24%);
+      pointer-events: none;
+    }
 
-        .paper-card {
-            border: 1px solid #e2e8f0;
-        }
+    .hero-inner {
+      position: relative;
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
 
-        .paper-card h3 {
-            color: var(--heading);
-            margin-bottom: 0.6rem;
-        }
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #dfeafe;
+      letter-spacing: 0.04em;
+      font-weight: 600;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
 
-        .paper-card .meta {
-            font-size: 0.85rem;
-            color: #64748b;
-            margin-bottom: 1rem;
-        }
+    .hero h1 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(2.4rem, 5vw, 4.3rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      margin: 18px 0 16px;
+    }
 
-        .paper-card p {
-            margin-bottom: 1rem;
-        }
+    .hero p {
+      margin: 0 0 22px;
+      max-width: 660px;
+      color: rgba(255,255,255,0.8);
+      font-size: 1.08rem;
+    }
 
-        .tag {
-            display: inline-block;
-            padding: 0.35rem 0.7rem;
-            border-radius: 999px;
-            background: #dbeafe;
-            color: #1d4ed8;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.02em;
-            margin-right: 0.5rem;
-            margin-top: 0.4rem;
-        }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
 
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            align-items: center;
-        }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 18px;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
 
-        .input-group {
-            margin-bottom: 1rem;
-        }
+    .btn:hover {
+      transform: translateY(-1px);
+    }
 
-        .input-group label,
-        form label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-        }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-2));
+      color: #fff;
+      box-shadow: 0 16px 24px rgba(58, 134, 255, 0.35);
+    }
 
-        .input-group input,
-        .input-group textarea,
-        form input,
-        form textarea,
-        form select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-family: inherit;
-        }
+    .btn-secondary {
+      background: rgba(255,255,255,0.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
 
-        .input-group textarea {
-            min-height: 120px;
-            resize: vertical;
-        }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      gap: 12px;
+      max-width: 480px;
+    }
 
-        .result-box {
-            background: #eff6ff;
-            border-left: 4px solid var(--accent);
-            padding: 1.5rem;
-            border-radius: 4px;
-        }
+    .stat-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 16px;
+      padding: 14px 12px;
+      text-align: center;
+    }
 
-        .result-box h3 {
-            margin-bottom: 0.75rem;
-            color: var(--heading);
-        }
+    .stat-box strong {
+      display: block;
+      font-size: 1.5rem;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
 
-        .subtle {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+    .stat-box span {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.78);
+    }
 
-        .quote {
-            background: var(--quote-bg);
-            border-left: 4px solid #6366f1;
-            padding: 1rem 1.2rem;
-            border-radius: 6px;
-            font-style: italic;
-            color: #4338ca;
-        }
+    .hero-card {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
 
-        .metric {
-            background: #fff;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 1.25rem;
-            text-align: center;
-        }
+    .mini-card {
+      background: rgba(17, 34, 64, 0.45);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
 
-        .metric .number {
-            display: block;
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--heading);
-        }
+    .mini-card:last-child { margin-bottom: 0; }
 
-        .metric .label {
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+    .mini-card .label {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-        form .form-group {
-            margin-bottom: 1.2rem;
-        }
+    .mini-card h3 {
+      margin: 8px 0 0;
+      font-size: 1.15rem;
+      color: #fff;
+    }
 
-        .file-input-wrapper {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-        }
+    .quote-strip {
+      background: rgba(255,255,255,0.04);
+      border-left: 3px solid #fbbf24;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin-top: 14px;
+      color: #fef3c7;
+      font-style: italic;
+    }
 
-        .file-input-label {
-            display: block;
-            padding: 1rem;
-            background: #f1f5f9;
-            border: 2px dashed #cbd5e1;
-            border-radius: 6px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+    main { padding: 42px 0 72px; }
 
-        .file-input-label:hover {
-            background: #e2e8f0;
-            border-color: #2563eb;
-        }
+    section { margin: 20px 0 36px; }
 
-        .file-input-label.has-file {
-            background: #dbeafe;
-            border-color: #2563eb;
-        }
+    .section-header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
 
-        #pdfFile {
-            display: none;
-        }
+    .section-header h2 {
+      font-family: 'Merriweather', serif;
+      font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+      margin: 0;
+      color: var(--primary);
+    }
 
-        footer {
-            text-align: center;
-            padding: 2rem;
-            background: var(--primary);
-            color: #94a3b8;
-            font-size: 0.9rem;
-        }
+    .section-header span {
+      color: var(--muted);
+      font-weight: 600;
+    }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 1rem;
-            }
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+    }
 
-            nav {
-                gap: 0.5rem 1rem;
-            }
+    .feature-box {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+    }
 
-            nav a {
-                margin-left: 0;
-            }
+    .feature-box strong {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 8px;
+      color: var(--primary);
+    }
 
-            .calculator-grid {
-                grid-template-columns: 1fr;
-            }
+    .feature-box small {
+      color: var(--muted);
+    }
 
-            .btn.secondary {
-                margin-left: 0;
-                margin-top: 0.75rem;
-            }
-        }
-    </style>
+    .paper-grid,
+    .news-grid,
+    .featured-grid,
+    .assist-grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .paper-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    .news-grid {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .featured-grid {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .assist-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .card {
+      background: var(--panel);
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      padding: 22px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .paper-card h3,
+    .news-card h3,
+    .featured-card h3,
+    .assistant-card h3,
+    .portal-card h3 {
+      margin: 0 0 8px;
+      color: var(--primary);
+      font-size: 1.18rem;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-bottom: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 10px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      background: #edf3ff;
+      color: #1d4ed8;
+    }
+
+    .tag-alt {
+      background: #fff1d6;
+      color: #a16207;
+    }
+
+    .tag-success {
+      background: #dff7f3;
+      color: var(--success);
+    }
+
+    .featured-highlight {
+      background: linear-gradient(135deg, rgba(17,34,64,0.98), rgba(37,99,235,0.95));
+      color: #fff;
+      padding: 28px;
+      border-radius: 24px;
+      border: none;
+      box-shadow: 0 22px 38px rgba(17, 34, 64, 0.18);
+    }
+
+    .featured-highlight h3 {
+      color: #fff;
+      font-size: clamp(1.5rem, 2vw, 2.2rem);
+      margin-bottom: 10px;
+    }
+
+    .featured-highlight p,
+    .featured-highlight li {
+      color: rgba(255,255,255,0.82);
+    }
+
+    .featured-highlight ul {
+      margin: 18px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .premium-panel {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .mini-stat {
+      background: var(--panel-soft);
+      border: 1px solid #dfe9ff;
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .mini-stat strong {
+      display: block;
+      font-size: 1.9rem;
+      margin-bottom: 6px;
+      color: var(--primary);
+    }
+
+    .mini-stat span {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .submission-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 20px;
+    }
+
+    .portal-card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .portal-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .portal-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      color: var(--muted);
+    }
+
+    .bullet {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--secondary), var(--secondary-2));
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    label {
+      display: grid;
+      gap: 8px;
+      color: var(--primary);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid #d8def0;
+      padding: 13px 14px;
+      font: inherit;
+      color: var(--text);
+      background: #fff;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: rgba(58, 134, 255, 0.85);
+      box-shadow: 0 0 0 4px rgba(58, 134, 255, 0.12);
+    }
+
+    textarea {
+      min-height: 128px;
+      resize: vertical;
+    }
+
+    .file-wrap {
+      display: inline-block;
+      width: 100%;
+      position: relative;
+    }
+
+    .file-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 58px;
+      border: 1.5px dashed #b8c6ea;
+      background: #f8faff;
+      border-radius: 12px;
+      color: var(--muted);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .file-label.has-file {
+      background: #eaf3ff;
+      border-color: #7da8ff;
+      color: #1d4ed8;
+    }
+
+    input[type="file"] { display: none; }
+
+    .assistant-shell {
+      background: linear-gradient(180deg, #f7faff 0%, #eef4ff 100%);
+      border: 1px solid #dfeafe;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 12px 24px rgba(15, 23, 42, 0.04);
+    }
+
+    .assistant-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 20px;
+      border-bottom: 1px solid #dfeafe;
+      background: #fff;
+    }
+
+    .assistant-header strong {
+      color: var(--primary);
+      font-size: 1.07rem;
+    }
+
+    .online-dot {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--success);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .online-dot::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--success);
+      box-shadow: 0 0 0 6px rgba(15,118,110,0.14);
+    }
+
+    .chat-box {
+      min-height: 290px;
+      padding: 18px 20px 8px;
+      display: grid;
+      gap: 12px;
+      background: linear-gradient(180deg, #f9fbff 0%, #eef4ff 100%);
+    }
+
+    .bubble {
+      max-width: 82%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      line-height: 1.55;
+      font-size: 0.96rem;
+    }
+
+    .bubble.user {
+      justify-self: end;
+      background: #dfeafe;
+      color: var(--primary);
+      border-bottom-right-radius: 6px;
+    }
+
+    .bubble.bot {
+      justify-self: start;
+      background: #fff;
+      color: var(--text);
+      border: 1px solid #e9eefc;
+      border-bottom-left-radius: 6px;
+    }
+
+    .prompt-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 18px 18px;
+      background: #fff;
+      border-top: 1px solid #dfeafe;
+    }
+
+    .prompt-row input {
+      flex: 1;
+      border-radius: 12px;
+      border: 1px solid #dfeafe;
+      background: #f8faff;
+      min-height: 48px;
+      padding: 12px 14px;
+    }
+
+    .prompt-row button {
+      min-width: 110px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .chip {
+      background: #edf3ff;
+      border: 1px solid #dfeafe;
+      color: #1d4ed8;
+      border-radius: 999px;
+      padding: 8px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .chip:hover {
+      background: #dfeafe;
+    }
+
+    .alert {
+      display: none;
+      border-radius: 12px;
+      padding: 12px 14px;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    .alert.show { display: block; }
+    .alert.success {
+      background: #e6f9f2;
+      color: var(--success);
+      border: 1px solid #bcead8;
+    }
+    .alert.error {
+      background: #feeaea;
+      color: var(--danger);
+      border: 1px solid #f5b5b5;
+    }
+
+    footer {
+      background: #0d1b2a;
+      color: rgba(255,255,255,0.72);
+      padding: 26px 0 42px;
+    }
+
+    .footer-inner {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      .hero-inner,
+      .featured-grid,
+      .assist-grid,
+      .submission-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        display: none;
+      }
+
+      .explore-btn {
+        margin-left: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero { padding-top: 52px; }
+
+      .hero-stats {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cta-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>CYSR</h1>
-        <nav>
-            <a href="#papers">Research</a>
-            <a href="#calculator">Interactive Tools</a>
-            <a href="#submit">Submit Paper</a>
-        </nav>
-    </header>
+  <header class="site-header">
+    <div class="topbar">
+      <div class="brand" aria-label="CYSR home">
+        <div class="brand-mark">C</div>
+        <span>CYSR</span>
+      </div>
 
-    <section class="hero">
-        <h2>Council of Young Researchers</h2>
-        <p>Empowering independent student researchers to publish theoretical frameworks, mathematical models, and open-source physics tools.</p>
-        <div>
-            <a href="#submit" class="btn">Submit Your Research</a>
-            <a href="#papers" class="btn secondary">Explore Papers</a>
+      <nav class="nav" aria-label="Main navigation">
+        <a href="#home">Home</a>
+        <a href="#research">Research Papers</a>
+        <a href="#nobel">Nobel & News</a>
+        <a href="#featured">Featured</a>
+        <a href="#submit">Submission</a>
+        <a href="#assistant">AI Assistant</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="explore-btn" aria-label="Open exploration menu" id="exploreToggle">
+          <span class="menu-dots" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="explore-panel" id="explorePanel" aria-label="Explore menu">
+    <a href="#home">1. Home</a>
+    <a href="#research">2. Research Papers</a>
+    <a href="#nobel">3. Nobel Prize Winners & News</a>
+    <a href="#featured">4. Featured Papers</a>
+    <a href="#submit">5. Submission Portal</a>
+    <a href="#assistant">6. AI Assistant</a>
+  </div>
+
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div>
+        <span class="eyebrow">Student-led discovery</span>
+        <h1>Council of Young Researchers</h1>
+        <p>
+          CYSR is a collaborative platform where young researchers transform curiosity into rigorous inquiry.
+          We encourage students to publish bold ideas, support one another, and turn academic questions into lasting scientific contributions.
+        </p>
+
+        <div class="cta-row">
+          <a href="#submit" class="btn btn-primary">Submit your research</a>
+          <a href="#research" class="btn btn-secondary">Explore the papers</a>
         </div>
+
+        <div class="hero-stats" aria-label="CYSR stats">
+          <div class="stat-box">
+            <strong>120+</strong>
+            <span>Student ideas</span>
+          </div>
+          <div class="stat-box">
+            <strong>18</strong>
+            <span>Research fields</span>
+          </div>
+          <div class="stat-box">
+            <strong>24/7</strong>
+            <span>Knowledge flow</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-card" aria-label="CYSR highlights">
+        <div class="mini-card">
+          <div class="label">What is CYSR?</div>
+          <h3>An open community for young scholars</h3>
+        </div>
+
+        <div class="mini-card">
+          <div class="label">Why it matters</div>
+          <h3>Encourages students to think deeply, present clearly, and build boldly</h3>
+        </div>
+
+        <div class="quote-strip">
+          “The future belongs to those who believe in the beauty of their dreams.” — Eleanor Roosevelt
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section aria-labelledby="feature-title">
+      <div class="section-header">
+        <h2 id="feature-title">Why students join CYSR</h2>
+        <span>Growth, mentorship, and visibility</span>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-box">
+          <strong>01</strong>
+          <small>We publish ideas from independent students and emerging researchers.</small>
+        </div>
+        <div class="feature-box">
+          <strong>02</strong>
+          <small>We encourage confident communication, evidence-based thinking, and curiosity.</small>
+        </div>
+        <div class="feature-box">
+          <strong>03</strong>
+          <small>We build a culture of motivation, collaboration, and accessible science.</small>
+        </div>
+        <div class="feature-box">
+          <strong>04</strong>
+          <small>We make research approachable for the next generation of innovators.</small>
+        </div>
+      </div>
     </section>
 
-    <div class="container">
-        <section id="papers">
-            <h2 class="section-title">Featured Research</h2>
-            <div class="research-grid">
-                <article class="card paper-card">
-                    <h3>Quantum Memory in Finite-State Systems</h3>
-                    <div class="meta">By A. Ilyas • 2025</div>
-                    <p>Investigates how information retention scales in compact quantum systems and introduces a model for bounded coherence loss.</p>
-                    <span class="tag">Quantum</span>
-                    <span class="tag">Modeling</span>
-                </article>
+    <section id="research">
+      <div class="section-header">
+        <h2>Research Papers</h2>
+        <span>Fresh, student-centered academic work</span>
+      </div>
 
-                <article class="card paper-card">
-                    <h3>Phase-Locking Under Resource Constraints</h3>
-                    <div class="meta">By M. Tan • 2025</div>
-                    <p>Explores nonlinear phase synchronization in energy-limited networks, with closed-form approximations for stable regimes.</p>
-                    <span class="tag">Dynamics</span>
-                    <span class="tag">Systems</span>
-                </article>
+      <div class="paper-grid">
+        <article class="card paper-card">
+          <h3>Quantum Memory in Finite-State Systems</h3>
+          <div class="meta">
+            <span>By A. Ilyas</span>
+            <span>2025</span>
+          </div>
+          <p>Investigates memory retention in compact quantum systems and models bounded coherence loss with scalable theoretical approximations.</p>
+          <div class="tag-list">
+            <span class="tag">Quantum</span>
+            <span class="tag">Modeling</span>
+          </div>
+        </article>
 
-                <article class="card paper-card">
-                    <h3>Open Source Tools for Symbolic Physics</h3>
-                    <div class="meta">By S. Noor • 2024</div>
-                    <p>Introduces reproducible computational workflows for symbolic derivations, benchmark validation, and collaborative experimentation.</p>
-                    <span class="tag">Open Source</span>
-                    <span class="tag">Computation</span>
-                </article>
+        <article class="card paper-card">
+          <h3>Phase-Locking Under Resource Constraints</h3>
+          <div class="meta">
+            <span>By M. Tan</span>
+            <span>2025</span>
+          </div>
+          <p>Explores nonlinear synchronization under energy-limited conditions and derives stable operating regimes for simplified systems.</p>
+          <div class="tag-list">
+            <span class="tag">Dynamics</span>
+            <span class="tag">Systems</span>
+          </div>
+        </article>
+
+        <article class="card paper-card">
+          <h3>Open Source Tools for Symbolic Physics</h3>
+          <div class="meta">
+            <span>By S. Noor</span>
+            <span>2024</span>
+          </div>
+          <p>Introduces reproducible workflows for symbolic derivations, benchmarking validation, and collaborative computational exploration.</p>
+          <div class="tag-list">
+            <span class="tag">Open Source</span>
+            <span class="tag">Computation</span>
+          </div>
+        </article>
+
+        <article class="card paper-card">
+          <h3>Microscopic Energy Transfer in Soft Matter</h3>
+          <div class="meta">
+            <span>By R. Kumar</span>
+            <span>2024</span>
+          </div>
+          <p>Presents an analytical lens for understanding internal energy transfer in soft systems and derived scaling behavior under load.</p>
+          <div class="tag-list">
+            <span class="tag tag-alt">Physics</span>
+            <span class="tag tag-alt">Theory</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="nobel">
+      <div class="section-header">
+        <h2>Nobel Prize Winners & Research News</h2>
+        <span>Global research momentum</span>
+      </div>
+
+      <div class="news-grid">
+        <article class="card news-card">
+          <h3>Prize Spotlight</h3>
+          <p>Recent Nobel recognition continues to highlight how curiosity, persistence, and foundational theory shape the future of science.</p>
+          <div class="tag-list">
+            <span class="tag tag-success">Physics</span>
+            <span class="tag tag-success">Innovation</span>
+          </div>
+        </article>
+
+        <article class="card news-card">
+          <h3>Young Researchers</h3>
+          <p>Emerging scholars are increasingly contributing to interdisciplinary work across AI, quantum systems, materials, and sustainable technologies.</p>
+          <div class="tag-list">
+            <span class="tag">AI</span>
+            <span class="tag">Quantum</span>
+          </div>
+        </article>
+
+        <article class="card news-card">
+          <h3>Science Headlines</h3>
+          <p>Breakthroughs in experimental design and theoretical modeling are making high-level science more open, collaborative, and student-friendly.</p>
+          <div class="tag-list">
+            <span class="tag tag-alt">News</span>
+            <span class="tag tag-alt">Discovery</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="featured">
+      <div class="section-header">
+        <h2>Featured Paper for CYSR</h2>
+        <span>Spotlight section for future submissions</span>
+      </div>
+
+      <div class="featured-grid">
+        <article class="featured-highlight">
+          <h3>Featured Paper: A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
+          <p>
+            This featured work presents a compelling theoretical bridge between fluid mechanics and equivalent elastic interpretations, exploring geometry, energy flow, and destabilization thresholds in a compact framework.
+          </p>
+          <ul>
+            <li>Analytical model for column thinning behavior</li>
+            <li>Interpretation of fluid dynamics through energy scaling</li>
+            <li>Designed for future academic spotlight and student publication growth</li>
+          </ul>
+        </article>
+
+        <aside class="premium-panel">
+          <div class="mini-stat">
+            <strong>Featured</strong>
+            <span>Keep this column reserved for the best work and future submissions.</span>
+          </div>
+
+          <div class="mini-stat">
+            <strong>New</strong>
+            <span>Fresh student work can be highlighted here as the community grows.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="submit">
+      <div class="section-header">
+        <h2>Submission Portal</h2>
+        <span>Submit your work for review</span>
+      </div>
+
+      <div class="submission-layout">
+        <div class="portal-card">
+          <h3>Why publish with CYSR?</h3>
+          <ul class="portal-list">
+            <li><span class="bullet"></span><span>Open platform for students and young researchers to share work.</span></li>
+            <li><span class="bullet"></span><span>Clear review process to encourage constructive feedback and academic trust.</span></li>
+            <li><span class="bullet"></span><span>Space for theoretical frameworks, models, mathematical insights, and research notes.</span></li>
+            <li><span class="bullet"></span><span>Designed to inspire student confidence and long-term scientific curiosity.</span></li>
+          </ul>
+        </div>
+
+        <div class="portal-card">
+          <h3>Submit your research paper</h3>
+          <form id="research-form">
+            <div class="form-grid">
+              <label>
+                Author Name(s)*
+                <input type="text" id="author" placeholder="Jane Doe" required />
+              </label>
+              <label>
+                Email Address*
+                <input type="email" id="email" placeholder="jane@example.com" required />
+              </label>
             </div>
-        </section>
 
-        <section id="calculator">
-            <h2 class="section-title">Interactive Tools</h2>
-            <div class="calculator-grid">
-                <div class="card">
-                    <h3 style="margin-bottom: 1rem; color: var(--heading);">Research Impact Calculator</h3>
-                    <div class="input-group">
-                        <label for="paperCount">Number of papers</label>
-                        <input id="paperCount" type="number" min="0" value="3">
-                    </div>
-                    <div class="input-group">
-                        <label for="citationCount">Estimated citations</label>
-                        <input id="citationCount" type="number" min="0" value="76">
-                    </div>
-                    <div class="input-group">
-                        <label for="collaborationCount">Collaborators</label>
-                        <input id="collaborationCount" type="number" min="0" value="8">
-                    </div>
-                    <button class="btn" onclick="calculateImpact()">Calculate</button>
-                </div>
+            <label>
+              Paper Title*
+              <input type="text" id="title" placeholder="Analytical Approaches to Quantum Lattice Networks" required />
+            </label>
 
-                <div class="card result-box">
-                    <h3>Impact Estimate</h3>
-                    <div id="impactOutput">
-                        <p><strong>Estimated Research Reach:</strong> 4.8x</p>
-                        <p class="subtle">This estimate reflects publication volume, citation momentum, and collaborative distribution.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+            <label>
+              Institution / Affiliation
+              <input type="text" id="institution" placeholder="University or lab name" />
+            </label>
 
-        <section>
-            <h2 class="section-title">Why CYSR</h2>
-            <div class="stats-grid">
-                <div class="metric">
-                    <span class="number">42+</span>
-                    <span class="label">Research Notes</span>
-                </div>
-                <div class="metric">
-                    <span class="number">12</span>
-                    <span class="label">Active Fields</span>
-                </div>
-                <div class="metric">
-                    <span class="number">5</span>
-                    <span class="label">Core Labs</span>
-                </div>
-                <div class="metric">
-                    <span class="number">100%</span>
-                    <span class="label">Open Access</span>
-                </div>
-            </div>
-        </section>
+            <label>
+              Abstract / Overview*
+              <textarea id="abstract" placeholder="Summarize the objective, methodology, contribution, and significance of your paper..." required></textarea>
+            </label>
 
-        <section id="submit" style="margin-top: 2rem;">
-            <h2 class="section-title">Submit Your Research</h2>
-            <div class="card">
-                <form>
-                    <div class="form-group">
-                        <label for="authorName">Author name</label>
-                        <input id="authorName" type="text" placeholder="Your full name">
-                    </div>
-                    <div class="form-group">
-                        <label for="paperTitle">Paper title</label>
-                        <input id="paperTitle" type="text" placeholder="Title of your research">
-                    </div>
-                    <div class="form-group">
-                        <label for="abstractText">Abstract</label>
-                        <textarea id="abstractText" placeholder="Write a short summary of your work..."></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="pdfFile">Upload manuscript</label>
-                        <div class="file-input-wrapper">
-                            <label for="pdfFile" class="file-input-label">Choose PDF</label>
-                            <input id="pdfFile" type="file" accept="application/pdf">
-                        </div>
-                    </div>
-                    <button type="button" class="btn" onclick="submitForm()">Submit</button>
-                </form>
-            </div>
-        </section>
+            <label>
+              Upload PDF Research Paper*
+              <div class="file-wrap">
+                <label for="pdfFile" class="file-label" id="fileLabel">📄 Choose PDF</label>
+                <input type="file" id="pdfFile" accept="application/pdf" required />
+              </div>
+            </label>
 
-        <section style="margin-top: 2rem;">
-            <h2 class="section-title">Editorial Note</h2>
-            <div class="quote">
-                “The future of science is not defined by institutional prestige alone, but by the accessibility of rigorous inquiry and the openness of young minds.”
-            </div>
-        </section>
+            <button type="submit" class="btn btn-primary" id="submitBtn">Submit for review</button>
+          </form>
+          <div id="alert" class="alert" role="alert"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="assistant">
+      <div class="section-header">
+        <h2>AI Assistant</h2>
+        <span>Help for research discovery and writing support</span>
+      </div>
+
+      <div class="assist-grid">
+        <div class="assistant-shell">
+          <div class="assistant-header">
+            <strong>CYSR Research Assistant</strong>
+            <span class="online-dot">Online</span>
+          </div>
+
+          <div class="chat-box" id="chatBox" aria-live="polite">
+            <div class="bubble bot">Hello! I can help you explore CYSR research themes, brainstorm ideas, refine abstracts, and suggest next steps for your paper.</div>
+          </div>
+
+          <div class="prompt-row">
+            <input id="promptInput" type="text" placeholder="Ask about research ideas, paper structure, or CYSR..." />
+            <button id="sendPrompt" class="btn btn-primary">Ask</button>
+          </div>
+        </div>
+
+        <div class="card assistant-card">
+          <h3>Suggested prompts</h3>
+          <div class="chip-row">
+            <button class="chip" type="button">How can I improve my abstract?</button>
+            <button class="chip" type="button">Give me research topic ideas.</button>
+            <button class="chip" type="button">How do I structure a paper?</button>
+            <button class="chip" type="button">What is CYSR?</button>
+            <button class="chip" type="button">How can students get motivated?</button>
+            <button class="chip" type="button">Explain Nobel-level scientific curiosity.</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>© 2026 Council of Young Researchers (CYSR)</span>
+      <span>Empowering independent student research</span>
     </div>
+  </footer>
 
-    <footer>
-        © 2025 CYSR | Council of Young Researchers
-    </footer>
+  <script>
+    const exploreToggle = document.getElementById('exploreToggle');
+    const explorePanel = document.getElementById('explorePanel');
 
-    <script>
-        function calculateImpact() {
-            const papers = Number(document.getElementById('paperCount').value) || 0;
-            const citations = Number(document.getElementById('citationCount').value) || 0;
-            const collaborators = Number(document.getElementById('collaborationCount').value) || 0;
+    exploreToggle.addEventListener('click', () => {
+      explorePanel.classList.toggle('open');
+    });
 
-            const reach = ((papers * 1.3) + (citations / 25) + (collaborators * 0.8)) / 2;
-            const formatted = reach.toFixed(1);
+    document.addEventListener('click', (event) => {
+      if (!explorePanel.contains(event.target) && !exploreToggle.contains(event.target)) {
+        explorePanel.classList.remove('open');
+      }
+    });
 
-            document.getElementById('impactOutput').innerHTML = `
-                <p><strong>Estimated Research Reach:</strong> ${formatted}x</p>
-                <p class="subtle">Based on ${papers} papers, ${citations} citations, and ${collaborators} collaborators.</p>
-            `;
-        }
+    const promptInput = document.getElementById('promptInput');
+    const chatBox = document.getElementById('chatBox');
+    const sendPrompt = document.getElementById('sendPrompt');
 
-        function submitForm() {
-            const title = document.getElementById('paperTitle').value.trim();
-            const author = document.getElementById('authorName').value.trim();
-            const abstractText = document.getElementById('abstractText').value.trim();
+    function addBubble(text, type) {
+      const bubble = document.createElement('div');
+      bubble.className = `bubble ${type}`;
+      bubble.textContent = text;
+      chatBox.appendChild(bubble);
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
 
-            if (!title || !author || !abstractText) {
-                alert('Please complete the author name, paper title, and abstract before submitting.');
-                return;
-            }
+    function assistantReply(prompt) {
+      const lower = prompt.toLowerCase();
+      if (lower.includes('abstract')) {
+        return 'A strong abstract should answer four questions: What problem are you solving? Why does it matter? What method did you use? What did you find? Keep it concise, clear, and evidence-driven.';
+      }
+      if (lower.includes('topic') || lower.includes('idea')) {
+        return 'Good research topics often combine a real problem with a tractable method. Try exploring curiosity-driven questions in AI, quantum systems, materials, energy, or applied mathematics.';
+      }
+      if (lower.includes('paper') || lower.includes('structure')) {
+        return 'A strong paper usually starts with a clear research question, then background, method, results, discussion, and conclusion. Keep the flow logical and accessible to readers.';
+      }
+      if (lower.includes('cysr')) {
+        return 'CYSR is a student-led research community that promotes independent thinking, collaborative learning, and open scientific exploration for young scholars.';
+      }
+      if (lower.includes('motivat') || lower.includes('inspire')) {
+        return 'Motivation grows when you connect your work to a meaningful question. Start small, stay curious, and treat each revision as progress toward a deeper understanding.';
+      }
+      if (lower.includes('nobel')) {
+        return 'Nobel-level discoveries often come from deep curiosity, long-term effort, and the courage to ask fundamental questions that others overlook.';
+      }
+      return 'That is a great question. Start by narrowing your research problem, identifying the core question, and reviewing a few relevant papers to sharpen your angle and method.';
+    }
 
-            alert('Thank you! Your research submission has been recorded for review.');
-        }
+    function handlePrompt() {
+      const prompt = promptInput.value.trim();
+      if (!prompt) return;
 
-        document.getElementById('pdfFile').addEventListener('change', function() {
-            const label = document.querySelector('.file-input-label');
-            if (this.files && this.files.length > 0) {
-                label.textContent = this.files[0].name;
-                label.classList.add('has-file');
-            } else {
-                label.textContent = 'Choose PDF';
-                label.classList.remove('has-file');
-            }
+      addBubble(prompt, 'user');
+      promptInput.value = '';
+      setTimeout(() => {
+        addBubble(assistantReply(prompt), 'bot');
+      }, 350);
+    }
+
+    sendPrompt.addEventListener('click', handlePrompt);
+    promptInput.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') handlePrompt();
+    });
+
+    document.querySelectorAll('.chip').forEach((chip) => {
+      chip.addEventListener('click', () => {
+        const text = chip.textContent.trim();
+        promptInput.value = text;
+        handlePrompt();
+      });
+    });
+
+    const pdfInput = document.getElementById('pdfFile');
+    const fileLabel = document.getElementById('fileLabel');
+
+    pdfInput.addEventListener('change', (event) => {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+      fileLabel.textContent = `✓ ${file.name}`;
+      fileLabel.classList.add('has-file');
+    });
+
+    document.getElementById('research-form').addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      const alertBox = document.getElementById('alert');
+      const author = document.getElementById('author').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const title = document.getElementById('title').value.trim();
+      const institution = document.getElementById('institution').value.trim();
+      const abstract = document.getElementById('abstract').value.trim();
+      const pdfFile = document.getElementById('pdfFile').files[0];
+
+      if (!author || !email || !title || !abstract || !pdfFile) {
+        alertBox.textContent = 'Please complete all required fields and upload a PDF.';
+        alertBox.className = 'alert error show';
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('author', author);
+      formData.append('email', email);
+      formData.append('title', title);
+      formData.append('institution', institution || 'N/A');
+      formData.append('abstract', abstract);
+      formData.append('pdf', pdfFile);
+
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Submitting...';
+
+      try {
+        const response = await fetch('/api/submit', {
+          method: 'POST',
+          body: formData,
         });
-    </script>
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Submission failed.');
+        }
+
+        alertBox.textContent = '✅ Submission successful! Your paper has been recorded for review.';
+        alertBox.className = 'alert success show';
+        document.getElementById('research-form').reset();
+        fileLabel.textContent = '📄 Choose PDF';
+        fileLabel.classList.remove('has-file');
+      } catch (error) {
+        alertBox.textContent = `❌ ${error.message}`;
+        alertBox.className = 'alert error show';
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Submit for review';
+      }
+    });
+  </script>
 </body>
 </html>
