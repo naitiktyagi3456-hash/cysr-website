@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CYSR | Council of Young Researchers</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
+    <!-- MathJax for rendering LaTeX equations -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <style>
         :root {
@@ -14,10 +16,6 @@
             --card-bg: #ffffff;
             --text: #334155;
             --heading: #0f172a;
-            --success: #15803d;
-            --warning: #b45309;
-            --danger: #b91c1c;
-            --quote-bg: #eef2ff;
         }
 
         * {
@@ -165,92 +163,6 @@
             padding: 0.75rem;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
-            font-size: 1rem;
-        }
-
-        .file-note {
-            color: #475569;
-            font-size: 0.9rem;
-            margin-top: 0.4rem;
-        }
-
-        .submission-table-wrap {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            background: #fff;
-        }
-
-        th, td {
-            border: 1px solid #e2e8f0;
-            padding: 0.9rem 0.75rem;
-            text-align: left;
-            vertical-align: top;
-        }
-
-        th {
-            background: #f1f5f9;
-        }
-
-        .status-badge {
-            display: inline-block;
-            padding: 0.28rem 0.6rem;
-            border-radius: 999px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            background: #dbeafe;
-            color: #1d4ed8;
-        }
-
-        .status-badge.pending {
-            background: #fef3c7;
-            color: var(--warning);
-        }
-
-        .status-badge.reviewed {
-            background: #dcfce7;
-            color: var(--success);
-        }
-
-        .pdf-link {
-            color: var(--accent);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .pdf-link:hover {
-            text-decoration: underline;
-        }
-
-        .quote-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.2rem;
-            margin-top: 1rem;
-        }
-
-        .quote-card {
-            background: var(--quote-bg);
-            border-left: 4px solid var(--accent);
-            border-radius: 10px;
-            padding: 1.3rem;
-            box-shadow: 0 2px 8px rgba(30, 41, 59, 0.08);
-        }
-
-        .quote-card p {
-            font-size: 1.02rem;
-            color: var(--heading);
-            margin-bottom: 0.8rem;
-            font-style: italic;
-        }
-
-        .quote-card span {
-            font-weight: 700;
-            color: var(--primary);
         }
 
         footer {
@@ -276,8 +188,6 @@
             <a href="#papers">Research</a>
             <a href="#calculator">Interactive Tools</a>
             <a href="#submit">Submit Paper</a>
-            <a href="#review-queue">Review Queue</a>
-            <a href="#quotes">Motivation</a>
         </nav>
     </header>
 
@@ -288,13 +198,14 @@
     </section>
 
     <div class="container">
+        <!-- Featured Research Section -->
         <section id="papers">
             <h2 class="section-title">Featured Research</h2>
             <div class="card">
                 <h3>A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
                 <p><strong>Author:</strong> Naitik Tyagi &bull; <em>Independent Theoretical Physics Research</em></p>
                 <br>
-                <p>This paper examines fluid dynamic models, introducing an equivalent linear elastic representation for bulk modulus and evaluating gravity-driven thinning profiles using geometrically derived, dimensionally consistent relations.</p>
+                <p>This paper examines fluid dynamic models, introducing an equivalent linear elastic representation for bulk modulus and evaluating gravity-driven thinning profiles using geometric profile equations:</p>
                 
                 <p style="text-align: center; margin: 1.5rem 0; font-size: 1.2rem;">
                     \[ r(h) = \sqrt{\frac{\kappa}{\pi \sqrt{v_0^2 + 2gh}}} \]
@@ -304,6 +215,7 @@
             </div>
         </section>
 
+        <!-- Interactive Physics Calculator Section -->
         <section id="calculator">
             <h2 class="section-title">Interactive Model: Fluid Stream Profile</h2>
             <div class="card">
@@ -333,87 +245,25 @@
             </div>
         </section>
 
-        <section id="quotes">
-            <h2 class="section-title">Words of Inspiration</h2>
-            <div class="card">
-                <div class="quote-grid">
-                    <div class="quote-card">
-                        <p>“The important thing is not to stop questioning. Curiosity has its own reason for existing.”</p>
-                        <span>— Albert Einstein</span>
-                    </div>
-                    <div class="quote-card">
-                        <p>“Success is the sum of small efforts, repeated day in and day out.”</p>
-                        <span>— Robert Collier</span>
-                    </div>
-                    <div class="quote-card">
-                        <p>“Science is not only a disciple of reason but, also, one of romance and passion.”</p>
-                        <span>— Stephen Hawking</span>
-                    </div>
-                    <div class="quote-card">
-                        <p>“It always seems impossible until it is done.”</p>
-                        <span>— Nelson Mandela</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
+        <!-- Article Submission Section -->
         <section id="submit">
             <h2 class="section-title">Submit Your Research Paper</h2>
             <div class="card">
-                <form id="research-form">
+                <form onsubmit="alert('Thank you! Your paper submission request has been logged.'); return false;">
                     <div class="form-group">
                         <label for="author">Author Name(s)</label>
                         <input type="text" id="author" placeholder="e.g., Jane Doe" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" placeholder="e.g., jane@example.com" required>
                     </div>
                     <div class="form-group">
                         <label for="title">Paper Title</label>
                         <input type="text" id="title" placeholder="e.g., Analytical Approaches to Quantum Lattice Networks" required>
                     </div>
                     <div class="form-group">
-                        <label for="institution">Institution / Affiliation</label>
-                        <input type="text" id="institution" placeholder="e.g., University of Research">
-                    </div>
-                    <div class="form-group">
                         <label for="abstract">Abstract / Overview</label>
                         <textarea id="abstract" rows="4" placeholder="Summary of findings, equations, or computational methods..." required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="pdfFile">Upload PDF</label>
-                        <input type="file" id="pdfFile" accept=".pdf" required>
-                        <div class="file-note">Only PDF files are accepted. This demo stores the file locally in the browser for review tracking.</div>
-                    </div>
-                    <button type="submit" class="btn">Submit Research for Review</button>
+                    <button type="submit" class="btn">Submit Abstract for Review</button>
                 </form>
-            </div>
-        </section>
-
-        <section id="review-queue">
-            <h2 class="section-title">Review Queue</h2>
-            <div class="card">
-                <p>Submitted research is assigned to the CYSR editorial review board for screening. Reviewers can inspect the document here in the queue.</p>
-                <div class="submission-table-wrap">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Author</th>
-                                <th>Title</th>
-                                <th>Institution</th>
-                                <th>Submitted</th>
-                                <th>Status</th>
-                                <th>PDF</th>
-                            </tr>
-                        </thead>
-                        <tbody id="submission-table-body">
-                            <tr>
-                                <td colspan="6">No submissions yet.</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </section>
     </div>
@@ -422,9 +272,8 @@
         <p>&copy; 2026 Council of Young Researchers (CYSR). Built for open scientific dissemination.</p>
     </footer>
 
+    <!-- Interactive Script -->
     <script>
-        const STORAGE_KEY = 'cysr-submissions';
-
         function calculateRadius() {
             const kappa = parseFloat(document.getElementById('kappa').value);
             const v0 = parseFloat(document.getElementById('v0').value);
@@ -436,7 +285,10 @@
                 return;
             }
 
+            // Calculate velocity at height h: v = sqrt(v0^2 + 2gh)
             const v = Math.sqrt(Math.pow(v0, 2) + (2 * g * h));
+
+            // Calculate radius: r = sqrt(kappa / (pi * v))
             const r_meters = Math.sqrt(kappa / (Math.PI * v));
             const r_mm = r_meters * 1000;
 
@@ -444,81 +296,8 @@
             document.getElementById('out-r').innerText = r_mm.toFixed(3);
         }
 
-        function saveSubmission(entry) {
-            const list = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            list.unshift(entry);
-            localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
-        }
-
-        function renderSubmissions() {
-            const list = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-            const tbody = document.getElementById('submission-table-body');
-
-            if (!list.length) {
-                tbody.innerHTML = '<tr><td colspan="6">No submissions yet.</td></tr>';
-                return;
-            }
-
-            tbody.innerHTML = list.map(item => {
-                return `
-                    <tr>
-                        <td>${item.author}</td>
-                        <td>${item.title}</td>
-                        <td>${item.institution || 'Not specified'}</td>
-                        <td>${new Date(item.submittedAt).toLocaleString()}</td>
-                        <td><span class="status-badge ${item.status === 'Reviewed' ? 'reviewed' : 'pending'}">${item.status}</span></td>
-                        <td>
-                            <a class="pdf-link" href="${item.pdfData || '#'}" target="_blank" rel="noopener noreferrer" download="${item.fileName || 'research-paper.pdf'}">Open PDF</a>
-                        </td>
-                    </tr>
-                `;
-            }).join('');
-        }
-
-        document.getElementById('research-form').addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            const author = document.getElementById('author').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const title = document.getElementById('title').value.trim();
-            const institution = document.getElementById('institution').value.trim();
-            const abstractText = document.getElementById('abstract').value.trim();
-            const fileInput = document.getElementById('pdfFile');
-            const file = fileInput.files[0];
-
-            if (!file || !file.name.toLowerCase().endsWith('.pdf')) {
-                alert('Please upload a valid PDF file.');
-                return;
-            }
-
-            const reader = new FileReader();
-
-            reader.onload = function () {
-                const entry = {
-                    author,
-                    email,
-                    title,
-                    institution,
-                    abstract: abstractText,
-                    status: 'Pending Review',
-                    submittedAt: new Date().toISOString(),
-                    fileName: file.name,
-                    pdfData: reader.result
-                };
-
-                saveSubmission(entry);
-                renderSubmissions();
-                document.getElementById('research-form').reset();
-                alert('Your research has been submitted for review by the CYSR editorial board.');
-            };
-
-            reader.readAsDataURL(file);
-        });
-
-        window.onload = function () {
-            calculateRadius();
-            renderSubmissions();
-        };
+        // Run calculation once on page load
+        window.onload = calculateRadius;
     </script>
 </body>
 </html>
