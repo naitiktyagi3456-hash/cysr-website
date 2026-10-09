@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CYSR | Council of Young Researchers</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
-    <!-- MathJax for rendering LaTeX equations -->
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
     <style>
         :root {
@@ -16,12 +14,20 @@
             --card-bg: #ffffff;
             --text: #334155;
             --heading: #0f172a;
+            --success: #15803d;
+            --warning: #b45309;
+            --danger: #b91c1c;
+            --quote-bg: #eef2ff;
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -31,6 +37,10 @@
             line-height: 1.6;
         }
 
+        a {
+            color: inherit;
+        }
+
         header {
             background-color: var(--primary);
             color: #fff;
@@ -38,12 +48,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         header h1 {
             font-family: 'Merriweather', serif;
             font-size: 1.5rem;
             letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -67,15 +87,44 @@
 
         .hero h2 {
             font-family: 'Merriweather', serif;
-            font-size: 2.5rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             margin-bottom: 1rem;
         }
 
         .hero p {
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto 2rem auto;
             color: #94a3b8;
             font-size: 1.1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.35);
+            color: #fff;
+            margin-left: 0.75rem;
+        }
+
+        .btn.secondary:hover {
+            background: rgba(255,255,255,0.08);
         }
 
         .container {
@@ -93,12 +142,63 @@
             padding-bottom: 0.5rem;
         }
 
+        .research-grid,
+        .tool-grid,
+        .stats-grid {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .research-grid {
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        }
+
+        .tool-grid {
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        }
+
         .card {
             background: var(--card-bg);
-            border-radius: 8px;
-            padding: 2rem;
+            border-radius: 10px;
+            padding: 1.5rem;
             margin-bottom: 2rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
+        }
+
+        .paper-card {
+            border: 1px solid #e2e8f0;
+        }
+
+        .paper-card h3 {
+            color: var(--heading);
+            margin-bottom: 0.6rem;
+        }
+
+        .paper-card .meta {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-bottom: 1rem;
+        }
+
+        .paper-card p {
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            background: #dbeafe;
+            color: #1d4ed8;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            margin-right: 0.5rem;
+            margin-top: 0.4rem;
         }
 
         .calculator-grid {
@@ -112,33 +212,29 @@
             margin-bottom: 1rem;
         }
 
-        .input-group label {
+        .input-group label,
+        form label {
             display: block;
             font-weight: 600;
             margin-bottom: 0.5rem;
         }
 
-        .input-group input {
+        .input-group input,
+        .input-group textarea,
+        form input,
+        form textarea,
+        form select {
             width: 100%;
             padding: 0.75rem;
             border: 1px solid #cbd5e1;
             border-radius: 6px;
             font-size: 1rem;
+            font-family: inherit;
         }
 
-        .btn {
-            background-color: var(--accent);
-            color: white;
-            border: none;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn:hover {
-            background-color: #1d4ed8;
+        .input-group textarea {
+            min-height: 120px;
+            resize: vertical;
         }
 
         .result-box {
@@ -148,21 +244,78 @@
             border-radius: 4px;
         }
 
+        .result-box h3 {
+            margin-bottom: 0.75rem;
+            color: var(--heading);
+        }
+
+        .subtle {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .quote {
+            background: var(--quote-bg);
+            border-left: 4px solid #6366f1;
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
+            font-style: italic;
+            color: #4338ca;
+        }
+
+        .metric {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-align: center;
+        }
+
+        .metric .number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--heading);
+        }
+
+        .metric .label {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
         form .form-group {
             margin-bottom: 1.2rem;
         }
 
-        form label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 0.4rem;
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
         }
 
-        form input, form textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #cbd5e1;
+        .file-input-label {
+            display: block;
+            padding: 1rem;
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
             border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .file-input-label:hover {
+            background: #e2e8f0;
+            border-color: #2563eb;
+        }
+
+        .file-input-label.has-file {
+            background: #dbeafe;
+            border-color: #2563eb;
+        }
+
+        #pdfFile {
+            display: none;
         }
 
         footer {
@@ -174,14 +327,32 @@
         }
 
         @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            nav {
+                gap: 0.5rem 1rem;
+            }
+
+            nav a {
+                margin-left: 0;
+            }
+
             .calculator-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .btn.secondary {
+                margin-left: 0;
+                margin-top: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-
     <header>
         <h1>CYSR</h1>
         <nav>
@@ -194,110 +365,172 @@
     <section class="hero">
         <h2>Council of Young Researchers</h2>
         <p>Empowering independent student researchers to publish theoretical frameworks, mathematical models, and open-source physics tools.</p>
-        <a href="#submit" class="btn">Submit Your Research</a>
+        <div>
+            <a href="#submit" class="btn">Submit Your Research</a>
+            <a href="#papers" class="btn secondary">Explore Papers</a>
+        </div>
     </section>
 
     <div class="container">
-        <!-- Featured Research Section -->
         <section id="papers">
             <h2 class="section-title">Featured Research</h2>
-            <div class="card">
-                <h3>A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
-                <p><strong>Author:</strong> Naitik Tyagi &bull; <em>Independent Theoretical Physics Research</em></p>
-                <br>
-                <p>This paper examines fluid dynamic models, introducing an equivalent linear elastic representation for bulk modulus and evaluating gravity-driven thinning profiles using geometric profile equations:</p>
-                
-                <p style="text-align: center; margin: 1.5rem 0; font-size: 1.2rem;">
-                    \[ r(h) = \sqrt{\frac{\kappa}{\pi \sqrt{v_0^2 + 2gh}}} \]
-                </p>
+            <div class="research-grid">
+                <article class="card paper-card">
+                    <h3>Quantum Memory in Finite-State Systems</h3>
+                    <div class="meta">By A. Ilyas • 2025</div>
+                    <p>Investigates how information retention scales in compact quantum systems and introduces a model for bounded coherence loss.</p>
+                    <span class="tag">Quantum</span>
+                    <span class="tag">Modeling</span>
+                </article>
 
-                <p>Passing dimensional checks (\(\text{kg}\cdot\text{m}/\text{s}^2\)), this analytical model demonstrates geometric thinning toward terminal breakup criteria.</p>
+                <article class="card paper-card">
+                    <h3>Phase-Locking Under Resource Constraints</h3>
+                    <div class="meta">By M. Tan • 2025</div>
+                    <p>Explores nonlinear phase synchronization in energy-limited networks, with closed-form approximations for stable regimes.</p>
+                    <span class="tag">Dynamics</span>
+                    <span class="tag">Systems</span>
+                </article>
+
+                <article class="card paper-card">
+                    <h3>Open Source Tools for Symbolic Physics</h3>
+                    <div class="meta">By S. Noor • 2024</div>
+                    <p>Introduces reproducible computational workflows for symbolic derivations, benchmark validation, and collaborative experimentation.</p>
+                    <span class="tag">Open Source</span>
+                    <span class="tag">Computation</span>
+                </article>
             </div>
         </section>
 
-        <!-- Interactive Physics Calculator Section -->
         <section id="calculator">
-            <h2 class="section-title">Interactive Model: Fluid Stream Profile</h2>
-            <div class="card">
-                <div class="calculator-grid">
-                    <div>
-                        <div class="input-group">
-                            <label for="kappa">Flow Rate \(\kappa\) (\(m^3/s\)):</label>
-                            <input type="number" id="kappa" value="0.00002" step="0.00001">
-                        </div>
-                        <div class="input-group">
-                            <label for="v0">Initial Velocity \(v_0\) (\(m/s\)):</label>
-                            <input type="number" id="v0" value="1.2" step="0.1">
-                        </div>
-                        <div class="input-group">
-                            <label for="height">Drop Height \(h\) (\(m\)):</label>
-                            <input type="number" id="height" value="0.2" step="0.05">
-                        </div>
-                        <button class="btn" onclick="calculateRadius()">Calculate Thinning Radius</button>
+            <h2 class="section-title">Interactive Tools</h2>
+            <div class="calculator-grid">
+                <div class="card">
+                    <h3 style="margin-bottom: 1rem; color: var(--heading);">Research Impact Calculator</h3>
+                    <div class="input-group">
+                        <label for="paperCount">Number of papers</label>
+                        <input id="paperCount" type="number" min="0" value="3">
                     </div>
+                    <div class="input-group">
+                        <label for="citationCount">Estimated citations</label>
+                        <input id="citationCount" type="number" min="0" value="76">
+                    </div>
+                    <div class="input-group">
+                        <label for="collaborationCount">Collaborators</label>
+                        <input id="collaborationCount" type="number" min="0" value="8">
+                    </div>
+                    <button class="btn" onclick="calculateImpact()">Calculate</button>
+                </div>
 
-                    <div class="result-box">
-                        <h4>Calculated Outputs</h4>
-                        <p style="margin-top: 0.5rem;">Local Velocity \(v(h)\): <strong id="out-v">--</strong> m/s</p>
-                        <p style="margin-top: 0.5rem;">Calculated Radius \(r(h)\): <strong id="out-r">--</strong> mm</p>
+                <div class="card result-box">
+                    <h3>Impact Estimate</h3>
+                    <div id="impactOutput">
+                        <p><strong>Estimated Research Reach:</strong> 4.8x</p>
+                        <p class="subtle">This estimate reflects publication volume, citation momentum, and collaborative distribution.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Article Submission Section -->
-        <section id="submit">
-            <h2 class="section-title">Submit Your Research Paper</h2>
+        <section>
+            <h2 class="section-title">Why CYSR</h2>
+            <div class="stats-grid">
+                <div class="metric">
+                    <span class="number">42+</span>
+                    <span class="label">Research Notes</span>
+                </div>
+                <div class="metric">
+                    <span class="number">12</span>
+                    <span class="label">Active Fields</span>
+                </div>
+                <div class="metric">
+                    <span class="number">5</span>
+                    <span class="label">Core Labs</span>
+                </div>
+                <div class="metric">
+                    <span class="number">100%</span>
+                    <span class="label">Open Access</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="submit" style="margin-top: 2rem;">
+            <h2 class="section-title">Submit Your Research</h2>
             <div class="card">
-                <form onsubmit="alert('Thank you! Your paper submission request has been logged.'); return false;">
+                <form>
                     <div class="form-group">
-                        <label for="author">Author Name(s)</label>
-                        <input type="text" id="author" placeholder="e.g., Jane Doe" required>
+                        <label for="authorName">Author name</label>
+                        <input id="authorName" type="text" placeholder="Your full name">
                     </div>
                     <div class="form-group">
-                        <label for="title">Paper Title</label>
-                        <input type="text" id="title" placeholder="e.g., Analytical Approaches to Quantum Lattice Networks" required>
+                        <label for="paperTitle">Paper title</label>
+                        <input id="paperTitle" type="text" placeholder="Title of your research">
                     </div>
                     <div class="form-group">
-                        <label for="abstract">Abstract / Overview</label>
-                        <textarea id="abstract" rows="4" placeholder="Summary of findings, equations, or computational methods..." required></textarea>
+                        <label for="abstractText">Abstract</label>
+                        <textarea id="abstractText" placeholder="Write a short summary of your work..."></textarea>
                     </div>
-                    <button type="submit" class="btn">Submit Abstract for Review</button>
+                    <div class="form-group">
+                        <label for="pdfFile">Upload manuscript</label>
+                        <div class="file-input-wrapper">
+                            <label for="pdfFile" class="file-input-label">Choose PDF</label>
+                            <input id="pdfFile" type="file" accept="application/pdf">
+                        </div>
+                    </div>
+                    <button type="button" class="btn" onclick="submitForm()">Submit</button>
                 </form>
+            </div>
+        </section>
+
+        <section style="margin-top: 2rem;">
+            <h2 class="section-title">Editorial Note</h2>
+            <div class="quote">
+                “The future of science is not defined by institutional prestige alone, but by the accessibility of rigorous inquiry and the openness of young minds.”
             </div>
         </section>
     </div>
 
     <footer>
-        <p>&copy; 2026 Council of Young Researchers (CYSR). Built for open scientific dissemination.</p>
+        © 2025 CYSR | Council of Young Researchers
     </footer>
 
-    <!-- Interactive Script -->
     <script>
-        function calculateRadius() {
-            const kappa = parseFloat(document.getElementById('kappa').value);
-            const v0 = parseFloat(document.getElementById('v0').value);
-            const h = parseFloat(document.getElementById('height').value);
-            const g = 9.81;
+        function calculateImpact() {
+            const papers = Number(document.getElementById('paperCount').value) || 0;
+            const citations = Number(document.getElementById('citationCount').value) || 0;
+            const collaborators = Number(document.getElementById('collaborationCount').value) || 0;
 
-            if (isNaN(kappa) || isNaN(v0) || isNaN(h)) {
-                alert("Please enter valid numerical parameters.");
+            const reach = ((papers * 1.3) + (citations / 25) + (collaborators * 0.8)) / 2;
+            const formatted = reach.toFixed(1);
+
+            document.getElementById('impactOutput').innerHTML = `
+                <p><strong>Estimated Research Reach:</strong> ${formatted}x</p>
+                <p class="subtle">Based on ${papers} papers, ${citations} citations, and ${collaborators} collaborators.</p>
+            `;
+        }
+
+        function submitForm() {
+            const title = document.getElementById('paperTitle').value.trim();
+            const author = document.getElementById('authorName').value.trim();
+            const abstractText = document.getElementById('abstractText').value.trim();
+
+            if (!title || !author || !abstractText) {
+                alert('Please complete the author name, paper title, and abstract before submitting.');
                 return;
             }
 
-            // Calculate velocity at height h: v = sqrt(v0^2 + 2gh)
-            const v = Math.sqrt(Math.pow(v0, 2) + (2 * g * h));
-
-            // Calculate radius: r = sqrt(kappa / (pi * v))
-            const r_meters = Math.sqrt(kappa / (Math.PI * v));
-            const r_mm = r_meters * 1000;
-
-            document.getElementById('out-v').innerText = v.toFixed(3);
-            document.getElementById('out-r').innerText = r_mm.toFixed(3);
+            alert('Thank you! Your research submission has been recorded for review.');
         }
 
-        // Run calculation once on page load
-        window.onload = calculateRadius;
+        document.getElementById('pdfFile').addEventListener('change', function() {
+            const label = document.querySelector('.file-input-label');
+            if (this.files && this.files.length > 0) {
+                label.textContent = this.files[0].name;
+                label.classList.add('has-file');
+            } else {
+                label.textContent = 'Choose PDF';
+                label.classList.remove('has-file');
+            }
+        });
     </script>
 </body>
 </html>
