@@ -4,68 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CYSR | Council of Young Researchers</title>
-  <meta name="description" content="Council of Young Researchers (CYSR) empowers students with open research, innovation, Nobel-inspired discovery, and AI-enabled academic exploration." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:wght@700;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Merriweather:ital,wght@0,300;0,700;1,300&display=swap" rel="stylesheet">
   <style>
-    :root { --bg: #f5f7fb; --panel: #ffffff; --primary: #112240; --secondary: #3a86ff; --secondary-2: #7c3aed; --text: #1f2937; --muted: #5f6c85; --radius: 18px; }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); position: relative; }
-    .india-flag { position: absolute; left: 14px; top: 14px; width: 100px; height: 60px; border-radius: 8px; overflow: hidden; z-index:6; box-shadow: 0 8px 18px rgba(15,23,42,0.08); }
-    .india-flag .stripe { height: 33.333%; }
-    .india-flag .saffron { background: #FF9933; }
-    .india-flag .white { background: #fff; position: relative; }
-    .india-flag .green { background: #138808; }
-    .india-flag .ashoka { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 22px; height: 22px; border-radius: 50%; border: 3px solid #0d3b66; }
-    .container { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 20px; }
-    header { background: linear-gradient(135deg,#0d1b2a,#152c4a); color:#fff; padding: 18px 0; position: sticky; top: 0; z-index: 10; }
-    nav a { color: rgba(255,255,255,0.9); margin-right: 12px; }
-    .news-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
-    .news-item { padding: 12px; background:#fff; border-radius:12px; box-shadow:0 8px 20px rgba(15,23,42,0.05); }
+    body{font-family:'Inter',sans-serif;background:#f8fafc;color:#334155;margin:0;padding:0}
+    .notice{padding:12px;background:#fff3bf;border-bottom:1px solid #f0e68c}
+    .wrap{max-width:1100px;margin:20px auto;padding:16px}
   </style>
 </head>
 <body>
-  <div class="india-flag" aria-hidden="true">
-    <div class="stripe saffron"></div>
-    <div class="stripe white"><div class="ashoka"></div></div>
-    <div class="stripe green"></div>
+  <div class="notice">This site serves the CYSR public UI. If you see an outdated page, clear browser cache or restart the server process.</div>
+  <div class="wrap">
+    <h1>CYSR — Live site</h1>
+    <p>If you're viewing this root index, the server may be serving root/index.html. The public UI is at /public/index.html and should be served by the Express app. Please restart the server to pick up updates.</p>
+    <ul>
+      <li>To test news endpoint: curl http://localhost:3000/api/news</li>
+      <li>To view public UI locally: open http://localhost:3000/ (after restart)</li>
+    </ul>
   </div>
-
-  <header>
-    <div class="container">
-      <h1>CYSR</h1>
-      <nav>
-        <a href="#home">Home</a>
-        <a href="#research">Research</a>
-        <a href="#nobel">Nobel & News</a>
-      </nav>
-    </div>
-  </header>
-
-  <main class="container">
-    <section id="nobel">
-      <h2>Nobel Prize Winners & Live Research News</h2>
-      <div id="liveNews" class="news-grid"></div>
-      <div id="newsFallback" style="display:none; margin-top:12px;">Static news content here</div>
-    </section>
-  </main>
-
-  <script>
-    async function fetchNews() {
-      try {
-        const res = await fetch('/api/news');
-        const json = await res.json();
-        const container = document.getElementById('liveNews');
-        container.innerHTML = '';
-        if (!json.items || json.items.length === 0) { document.getElementById('newsFallback').style.display = 'block'; return; }
-        json.items.slice(0,6).forEach(i=>{
-          const el = document.createElement('div'); el.className='news-item'; el.innerHTML = `<h4><a href="${i.link||i.url}" target="_blank" rel="noopener">${i.title}</a></h4><p style="color:#6b7280;font-size:0.9rem">${new Date(i.pubDate).toLocaleString()}</p><p style="margin-top:8px;color:#374151">${i.description||''}</p>`; container.appendChild(el);
-        });
-      } catch(e){ console.error(e); document.getElementById('newsFallback').style.display='block'; }
-    }
-    fetchNews(); setInterval(fetchNews, 5*60*1000);
-  </script>
 </body>
 </html>

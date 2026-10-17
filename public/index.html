@@ -12,109 +12,74 @@
     :root {
       --bg: #f5f7fb;
       --panel: #ffffff;
-      --panel-soft: #eef3ff;
+      --accent: #3a86ff;
       --primary: #112240;
-      --primary-2: #1d3557;
-      --secondary: #3a86ff;
-      --secondary-2: #7c3aed;
-      --accent: #f5b700;
-      --text: #1f2937;
       --muted: #5f6c85;
       --line: #e5e7eb;
-      --success: #0f766e;
-      --danger: #dc2626;
-      --shadow: 0 18px 45px rgba(17, 34, 64, 0.12);
-      --radius: 22px;
+      --radius: 18px;
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Inter', sans-serif; background: var(--bg); color: #1f2937; position: relative; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background:
-        radial-gradient(circle at top left, rgba(122, 92, 255, 0.06), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(58, 134, 255, 0.06), transparent 30%),
-        var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      position: relative;
-    }
-
-    /* Indian themed ribbon (top-left) */
-    .india-flag {
-      position: absolute;
-      left: 18px;
-      top: 18px;
-      width: 120px;
-      height: 72px;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 6;
-      box-shadow: 0 8px 18px rgba(15,23,42,0.08);
-      border: 1px solid rgba(0,0,0,0.06);
-    }
+    /* Indian themed ribbon */
+    .india-flag { position: absolute; left: 18px; top: 18px; width: 120px; height: 72px; border-radius: 10px; overflow: hidden; z-index: 6; box-shadow: 0 8px 18px rgba(15,23,42,0.08); border: 1px solid rgba(0,0,0,0.06); }
     .india-flag .stripe { height: 33.333%; }
     .india-flag .saffron { background: #FF9933; }
-    .india-flag .white { background: #ffffff; position: relative; }
+    .india-flag .white { background: #fff; position: relative; }
     .india-flag .green { background: #138808; }
-    .india-flag .ashoka {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 28px;
-      height: 28px;
-      border-radius: 50%;
-      border: 3px solid #0d3b66;
-      box-shadow: 0 0 0 4px rgba(13,59,102,0.06);
-    }
+    .india-flag .ashoka { position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 28px; height: 28px; border-radius: 50%; border: 3px solid #0d3b66; box-shadow: 0 0 0 4px rgba(13,59,102,0.06); }
 
-    .container {
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-    }
+    header { background: linear-gradient(135deg,#0d1b2a,#152c4a); color:#fff; padding: 16px 0; position: sticky; top: 0; z-index: 20; }
+    .topbar { width: min(1180px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .brand { display:flex; align-items:center; gap:10px; font-weight:700; }
+    .brand-mark { width:36px; height:36px; display:grid; place-items:center; border-radius:10px; background:linear-gradient(135deg,#3a86ff,#7c3aed); color:#fff; font-weight:800; }
+    nav { display:flex; gap:14px; color:rgba(255,255,255,0.9); font-weight:600; }
 
-    /* rest of styles omitted for brevity; keep same visual system as before */
-    .site-header { position: sticky; top: 0; z-index: 20; background: rgba(17,34,64,0.88); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .topbar { width: min(1180px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; min-height: 78px; gap: 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 700; letter-spacing: 0.04em; }
-    .brand-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; background: linear-gradient(135deg, var(--secondary), var(--secondary-2)); box-shadow: 0 10px 22px rgba(58, 134, 255, 0.4); font-weight: 800; font-size: 0.92rem; }
-    .nav { display: flex; align-items: center; gap: 22px; color: rgba(255,255,255,0.8); font-size: 0.95rem; font-weight: 600; }
-    .explore-btn { width: 42px; height: 42px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.18); background: rgba(255,255,255,0.05); color: #fff; cursor: pointer; display: grid; place-items: center; }
-    .menu-dots { display: flex; flex-direction: column; gap: 4px; }
-    .menu-dots span { width: 6px; height: 6px; border-radius: 50%; background: #fff; display: block; }
-    .explore-panel { position: absolute; right: max(16px, calc((100vw - 1180px)/2 + 16px)); top: 90px; width: min(340px, calc(100vw - 32px)); background: rgba(15, 23, 42, 0.96); border: 1px solid rgba(255,255,255,0.08); border-radius: 18px; box-shadow: 0 18px 45px rgba(17, 34, 64, 0.12); padding: 12px; opacity: 0; visibility: hidden; transform: translateY(-8px); transition: all 0.2s ease; z-index: 25; }
-    .explore-panel.open { opacity: 1; visibility: visible; transform: translateY(0); }
-    .explore-panel a { display: block; color: #edf3ff; padding: 12px 14px; border-radius: 12px; font-weight: 600; }
+    .explore-btn { width:42px; height:42px; border-radius:10px; background: rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.08); display:grid; place-items:center; cursor:pointer; }
 
-    .hero { padding: 72px 0 34px; background: linear-gradient(135deg, #0d1b2a 0%, #152c4a 42%, #1d3557 100%); color: #fff; position: relative; overflow: hidden; }
-    .hero-inner { position: relative; width: min(1180px, calc(100% - 32px)); margin: 0 auto; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; }
-    .eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12); color: #dfeafe; letter-spacing: 0.04em; font-weight: 600; font-size: 0.82rem; text-transform: uppercase; }
-    .hero h1 { font-family: 'Merriweather', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); line-height: 1.08; letter-spacing: -0.04em; margin: 18px 0 16px; }
-    .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 24px; }
-    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 18px; border: none; border-radius: 12px; font-weight: 700; cursor: pointer; }
-    .btn-primary { background: linear-gradient(135deg, var(--secondary), var(--secondary-2)); color: #fff; }
-    .btn-secondary { background: rgba(255,255,255,0.1); color: #fff; border: 1px solid rgba(255,255,255,0.18); }
+    .explore-panel { position:absolute; right:16px; top:78px; width:320px; background:rgba(15,23,42,0.96); border-radius:14px; padding:10px; box-shadow:0 18px 36px rgba(15,23,42,0.18); display:none; z-index:25; }
+    .explore-panel.open { display:block; }
+    .explore-panel a { display:block; color:#edf3ff; padding:10px; border-radius:8px; font-weight:600; text-decoration:none; }
 
-    main { padding: 42px 0 72px; }
-    .section-header { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 18px; }
-    .section-header h2 { font-family: 'Merriweather', serif; font-size: clamp(1.6rem, 2.2vw, 2.2rem); margin: 0; color: var(--primary); }
-    .paper-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+    .hero { padding:72px 0 32px; background: linear-gradient(135deg, #0d1b2a 0%, #152c4a 100%); color:#fff; }
+    .hero .container { display:grid; grid-template-columns:1fr 0.9fr; gap:24px; align-items:center; }
+    .eyebrow { display:inline-flex; padding:6px 10px; border-radius:999px; background:rgba(255,255,255,0.06); font-weight:700; font-size:0.8rem; }
+    .hero h1 { font-family:'Merriweather', serif; font-size: clamp(2rem,4vw,3rem); margin:14px 0; }
+    .cta-row { display:flex; gap:12px; margin-bottom:18px; }
+    .btn { padding:12px 18px; border-radius:10px; font-weight:700; cursor:pointer; }
+    .btn-primary { background:linear-gradient(135deg,#3a86ff,#7c3aed); color:#fff; }
+    .btn-secondary { background:rgba(255,255,255,0.08); color:#fff; border:1px solid rgba(255,255,255,0.08); }
 
-    /* News area */
-    .news-grid { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
-    .news-item { display: block; padding: 14px; border-radius: 14px; background: linear-gradient(180deg,#fff,#f7fbff); border: 1px solid #e6eefc; }
-    .news-item h4 { margin: 0 0 8px; color: var(--primary); font-size: 1rem; }
-    .news-meta { color: var(--muted); font-size: 0.82rem; margin-bottom: 8px; }
+    main.container { width: min(1180px, calc(100% - 32px)); margin: -28px auto 40px; }
+    section { margin-bottom:28px; }
+    .section-header { display:flex; align-items:end; justify-content:space-between; gap:12px; }
+    .section-header h2 { font-family:'Merriweather', serif; color:var(--primary); margin:0; }
 
-    footer { background: #0d1b2a; color: rgba(255,255,255,0.72); padding: 26px 0 42px; }
-    .footer-inner { width: min(1180px, calc(100% - 32px)); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+    .paper-grid { display:grid; gap:16px; grid-template-columns: repeat(auto-fit,minmax(240px,1fr)); }
+    .card { background:var(--panel); border-radius:14px; padding:18px; box-shadow:0 12px 24px rgba(15,23,42,0.06); border:1px solid var(--line); }
 
-    @media (max-width: 980px) { .hero-inner, .submission-layout { grid-template-columns: 1fr; } .nav { display: none; } }
-    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } .hero { padding-top: 52px; } .cta-row { flex-direction: column; } .btn { width: 100%; } }
+    .news-grid { display:grid; gap:12px; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); }
+    .news-item { background:#fff; border-radius:12px; padding:12px; box-shadow:0 8px 20px rgba(15,23,42,0.04); }
+    .news-item h4 { margin:0 0 8px; font-size:1rem; color:var(--primary); }
+    .news-meta { color:var(--muted); font-size:0.82rem; margin-bottom:8px; }
+
+    .submission-layout { display:grid; grid-template-columns: 0.9fr 1.1fr; gap:18px; }
+    .form-grid { display:grid; grid-template-columns: repeat(2,1fr); gap:12px; }
+    label { display:block; font-weight:600; color:var(--primary); margin-bottom:8px; }
+    input, textarea { width:100%; padding:10px; border-radius:10px; border:1px solid #e6eefc; }
+    textarea { min-height:120px; }
+
+    .assistant-shell { background:linear-gradient(180deg,#f7faff,#eef4ff); border-radius:14px; border:1px solid #dfeafe; }
+    .chat-box { min-height:220px; padding:12px; display:grid; gap:10px; }
+    .bubble { padding:10px 12px; border-radius:12px; max-width:80%; }
+    .bubble.bot { background:#fff; border:1px solid #e9eefc; }
+    .bubble.user { background:#dfeafe; justify-self:end; }
+
+    footer { background:#0d1b2a; color:rgba(255,255,255,0.8); padding:20px 0; }
+
+    @media(max-width:980px){ .hero .container{grid-template-columns:1fr;} .submission-layout{grid-template-columns:1fr;} .form-grid{grid-template-columns:1fr;} }
   </style>
 </head>
 <body>
@@ -124,465 +89,190 @@
     <div class="stripe green"></div>
   </div>
 
-  <header class="site-header">
+  <header>
     <div class="topbar">
-      <div class="brand" aria-label="CYSR home">
-        <div class="brand-mark">C</div>
-        <span>CYSR</span>
-      </div>
-
-      <nav class="nav" aria-label="Main navigation">
+      <div class="brand"><div class="brand-mark">C</div><div>CYSR</div></div>
+      <nav>
         <a href="#home">Home</a>
-        <a href="#research">Research Papers</a>
+        <a href="#research">Research</a>
         <a href="#nobel">Nobel & News</a>
         <a href="#featured">Featured</a>
-        <a href="#submit">Submission</a>
-        <a href="#assistant">AI Assistant</a>
+        <a href="#submit">Submit</a>
+        <a href="#assistant">Assistant</a>
       </nav>
-
-      <div class="nav-actions">
-        <button class="explore-btn" aria-label="Open exploration menu" id="exploreToggle">
-          <span class="menu-dots" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button>
+      <div>
+        <button class="explore-btn" id="exploreToggle" aria-label="Explore">☰</button>
       </div>
     </div>
   </header>
 
-  <div class="explore-panel" id="explorePanel" aria-label="Explore menu">
-    <a href="#home">1. Home</a>
-    <a href="#research">2. Research Papers</a>
-    <a href="#nobel">3. Nobel Prize Winners & News</a>
-    <a href="#featured">4. Featured Papers</a>
-    <a href="#submit">5. Submission Portal</a>
-    <a href="#assistant">6. AI Assistant</a>
+  <div class="explore-panel" id="explorePanel" aria-hidden="true">
+    <a href="#home">Home</a>
+    <a href="#research">Research Papers</a>
+    <a href="#nobel">Nobel & Live News</a>
+    <a href="#featured">Featured</a>
+    <a href="#submit">Submission Portal</a>
+    <a href="#assistant">AI Assistant</a>
   </div>
 
   <section class="hero" id="home">
-    <div class="hero-inner">
+    <div class="container">
       <div>
         <span class="eyebrow">Student-led discovery</span>
         <h1>Council of Young Researchers</h1>
-        <p>
-          CYSR is a collaborative platform where young researchers transform curiosity into rigorous inquiry.
-          We encourage students to publish bold ideas, support one another, and turn academic questions into lasting scientific contributions.
-        </p>
-
+        <p>Open platform for student research: publish notes, models, and reproducible computation.</p>
         <div class="cta-row">
           <a href="#submit" class="btn btn-primary">Submit your research</a>
-          <a href="#research" class="btn btn-secondary">Explore the papers</a>
-        </div>
-
-        <div class="hero-stats" aria-label="CYSR stats">
-          <div class="stat-box">
-            <strong>120+</strong>
-            <span>Student ideas</span>
-          </div>
-          <div class="stat-box">
-            <strong>18</strong>
-            <span>Research fields</span>
-          </div>
-          <div class="stat-box">
-            <strong>24/7</strong>
-            <span>Knowledge flow</span>
-          </div>
+          <a href="#research" class="btn btn-secondary">Explore papers</a>
         </div>
       </div>
-
-      <div class="hero-card" aria-label="CYSR highlights">
+      <div class="card">
         <div class="mini-card">
-          <div class="label">What is CYSR?</div>
-          <h3>An open community for young scholars</h3>
-        </div>
-
-        <div class="mini-card">
-          <div class="label">Why it matters</div>
-          <h3>Encourages students to think deeply, present clearly, and build boldly</h3>
-        </div>
-
-        <div class="quote-strip">
-          “The future belongs to those who believe in the beauty of their dreams.” — Eleanor Roosevelt
+          <div style="font-weight:700;color:#fff;">What is CYSR?</div>
+          <div style="margin-top:8px;color:#fff;">A community for young scholars to publish and collaborate.</div>
         </div>
       </div>
     </div>
   </section>
 
   <main class="container">
-    <section aria-labelledby="feature-title">
-      <div class="section-header">
-        <h2 id="feature-title">Why students join CYSR</h2>
-        <span>Growth, mentorship, and visibility</span>
-      </div>
-
-      <div class="feature-grid">
-        <div class="feature-box">
-          <strong>01</strong>
-          <small>We publish ideas from independent students and emerging researchers.</small>
-        </div>
-        <div class="feature-box">
-          <strong>02</strong>
-          <small>We encourage confident communication, evidence-based thinking, and curiosity.</small>
-        </div>
-        <div class="feature-box">
-          <strong>03</strong>
-          <small>We build a culture of motivation, collaboration, and accessible science.</small>
-        </div>
-        <div class="feature-box">
-          <strong>04</strong>
-          <small>We make research approachable for the next generation of innovators.</small>
-        </div>
-      </div>
-    </section>
-
     <section id="research">
-      <div class="section-header">
-        <h2>Research Papers</h2>
-        <span>Fresh, student-centered academic work</span>
-      </div>
-
+      <div class="section-header"><h2>Research Papers</h2><span style="color:var(--muted);">Student-centered works</span></div>
       <div class="paper-grid">
-        <article class="card paper-card">
+        <article class="card">
           <h3>Quantum Memory in Finite-State Systems</h3>
-          <div class="meta">
-            <span>By A. Ilyas</span>
-            <span>2025</span>
-          </div>
-          <p>Investigates memory retention in compact quantum systems and models bounded coherence loss with scalable theoretical approximations.</p>
-          <div class="tag-list">
-            <span class="tag">Quantum</span>
-            <span class="tag">Modeling</span>
-          </div>
+          <div class="meta">By A. Ilyas • 2025</div>
+          <p>Investigates memory retention in compact quantum systems and models bounded coherence loss.</p>
         </article>
-
-        <article class="card paper-card">
+        <article class="card">
           <h3>Phase-Locking Under Resource Constraints</h3>
-          <div class="meta">
-            <span>By M. Tan</span>
-            <span>2025</span>
-          </div>
-          <p>Explores nonlinear synchronization under energy-limited conditions and derives stable operating regimes for simplified systems.</p>
-          <div class="tag-list">
-            <span class="tag">Dynamics</span>
-            <span class="tag">Systems</span>
-          </div>
+          <div class="meta">By M. Tan • 2025</div>
+          <p>Nonlinear synchronization under energy-limited conditions and closed-form approximations.</p>
         </article>
-
-        <article class="card paper-card">
+        <article class="card">
           <h3>Open Source Tools for Symbolic Physics</h3>
-          <div class="meta">
-            <span>By S. Noor</span>
-            <span>2024</span>
-          </div>
-          <p>Introduces reproducible workflows for symbolic derivations, benchmarking validation, and collaborative computational exploration.</p>
-          <div class="tag-list">
-            <span class="tag">Open Source</span>
-            <span class="tag">Computation</span>
-          </div>
+          <div class="meta">By S. Noor • 2024</div>
+          <p>Reproducible workflows for symbolic derivations and collaborative experimentation.</p>
         </article>
       </div>
     </section>
 
     <section id="nobel">
-      <div class="section-header">
-        <h2>Nobel Prize Winners & Live Research News</h2>
-        <span>Up-to-date headlines</span>
-      </div>
-
-      <div id="liveNews" class="news-grid" aria-live="polite">
-        <!-- Live news items will be inserted here -->
-      </div>
-
-      <div id="newsFallback" style="display:none; margin-top:12px;" class="news-grid">
-        <article class="card news-card">
+      <div class="section-header"><h2>Nobel Prize Winners & Live Research News</h2><span style="color:var(--muted);">Up-to-date headlines</span></div>
+      <div id="liveNews" class="news-grid" aria-live="polite"></div>
+      <div id="newsFallback" style="display:none;margin-top:12px;" class="news-grid">
+        <article class="card">
           <h3>Prize Spotlight</h3>
-          <p>Recent Nobel recognition continues to highlight how curiosity, persistence, and foundational theory shape the future of science.</p>
+          <p>Recent Nobel recognition continues to highlight how curiosity and foundational theory shape science.</p>
         </article>
       </div>
     </section>
 
     <section id="featured">
-      <div class="section-header">
-        <h2>Featured Paper for CYSR</h2>
-        <span>Spotlight section for future submissions</span>
-      </div>
-
-      <div class="featured-grid">
-        <article class="featured-highlight">
-          <h3>Featured Paper: A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
-          <p>
-            This featured work presents a compelling theoretical bridge between fluid mechanics and equivalent elastic interpretations, exploring geometry, energy flow, and destabilization thresholds in a compact framework.
-          </p>
-          <ul>
-            <li>Analytical model for column thinning behavior</li>
-            <li>Interpretation of fluid dynamics through energy scaling</li>
-            <li>Designed for future academic spotlight and student publication growth</li>
-          </ul>
-        </article>
-
-        <aside class="premium-panel">
-          <div class="mini-stat">
-            <strong>Featured</strong>
-            <span>Keep this column reserved for the best work and future submissions.</span>
-          </div>
-
-          <div class="mini-stat">
-            <strong>New</strong>
-            <span>Fresh student work can be highlighted here as the community grows.</span>
-          </div>
-        </aside>
+      <div class="section-header"><h2>Featured Paper for CYSR</h2><span style="color:var(--muted);">Spotlight</span></div>
+      <div class="card">
+        <h3>A Micro-Macro Energy Bridge for Fluid Column Destabilization</h3>
+        <p>This paper presents a theoretical bridge between fluid mechanics and equivalent elastic interpretations.</p>
       </div>
     </section>
 
     <section id="submit">
-      <div class="section-header">
-        <h2>Submission Portal</h2>
-        <span>Submit your work for review</span>
-      </div>
-
+      <div class="section-header"><h2>Submission Portal</h2><span style="color:var(--muted);">Submit your work for review</span></div>
       <div class="submission-layout">
-        <div class="portal-card">
+        <div class="card">
           <h3>Why publish with CYSR?</h3>
-          <ul class="portal-list">
-            <li><span class="bullet"></span><span>Open platform for students and young researchers to share work.</span></li>
-            <li><span class="bullet"></span><span>Clear review process to encourage constructive feedback and academic trust.</span></li>
-            <li><span class="bullet"></span><span>Space for theoretical frameworks, models, mathematical insights, and research notes.</span></li>
-            <li><span class="bullet"></span><span>Designed to inspire student confidence and long-term scientific curiosity.</span></li>
+          <ul>
+            <li>Open platform for students</li>
+            <li>Clear review process</li>
+            <li>Space for theories, models, and notes</li>
           </ul>
         </div>
 
-        <div class="portal-card">
+        <div class="card">
           <h3>Submit your research paper</h3>
           <form id="research-form">
             <div class="form-grid">
-              <label>
-                Author Name(s)*
-                <input type="text" id="author" placeholder="Jane Doe" required />
-              </label>
-              <label>
-                Email Address*
-                <input type="email" id="email" placeholder="jane@example.com" required />
-              </label>
+              <label>Author Name(s)*<input type="text" id="author" required></label>
+              <label>Email Address*<input type="email" id="email" required></label>
             </div>
-
-            <label>
-              Paper Title*
-              <input type="text" id="title" placeholder="Analytical Approaches to Quantum Lattice Networks" required />
-            </label>
-
-            <label>
-              Institution / Affiliation
-              <input type="text" id="institution" placeholder="University or lab name" />
-            </label>
-
-            <label>
-              Abstract / Overview*
-              <textarea id="abstract" placeholder="Summarize the objective, methodology, contribution, and significance of your paper..." required></textarea>
-            </label>
-
-            <label>
-              Upload PDF Research Paper*
-              <div class="file-wrap">
-                <label for="pdfFile" class="file-label" id="fileLabel">📄 Choose PDF</label>
-                <input type="file" id="pdfFile" accept="application/pdf" required />
-              </div>
-            </label>
-
+            <label>Paper Title*<input type="text" id="title" required></label>
+            <label>Institution / Affiliation<input type="text" id="institution"></label>
+            <label>Abstract / Overview*<textarea id="abstract" required></textarea></label>
+            <label>Upload PDF Research Paper*<div class="file-wrap"><label for="pdfFile" class="file-label" id="fileLabel">📄 Choose PDF</label><input type="file" id="pdfFile" accept="application/pdf" required></div></label>
             <button type="submit" class="btn btn-primary" id="submitBtn">Submit for review</button>
+            <div id="alert" class="alert" role="alert" style="margin-top:12px;display:none;padding:10px;border-radius:8px;"></div>
           </form>
-          <div id="alert" class="alert" role="alert"></div>
         </div>
       </div>
     </section>
 
     <section id="assistant">
-      <div class="section-header">
-        <h2>AI Assistant</h2>
-        <span>Help for research discovery and writing support</span>
-      </div>
-
-      <div class="assist-grid">
-        <div class="assistant-shell">
-          <div class="assistant-header">
-            <strong>CYSR Research Assistant</strong>
-            <span class="online-dot">Online</span>
-          </div>
-
-          <div class="chat-box" id="chatBox" aria-live="polite">
-            <div class="bubble bot">Hello! I can help you explore CYSR research themes, brainstorm ideas, refine abstracts, and suggest next steps for your paper.</div>
-          </div>
-
-          <div class="prompt-row">
-            <input id="promptInput" type="text" placeholder="Ask about research ideas, paper structure, or CYSR..." />
-            <button id="sendPrompt" class="btn btn-primary">Ask</button>
-          </div>
+      <div class="section-header"><h2>AI Assistant</h2><span style="color:var(--muted);">Writing help & ideas</span></div>
+      <div class="assist-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="assistant-shell card">
+          <div class="chat-box" id="chatBox" aria-live="polite"><div class="bubble bot">Hello! I can help you brainstorm, refine abstracts, and suggest structure for your paper.</div></div>
+          <div style="display:flex;gap:8px;padding-top:10px;"><input id="promptInput" type="text" placeholder="Ask for help..." style="flex:1;padding:10px;border-radius:10px;border:1px solid #e6eefc;"><button id="sendPrompt" class="btn btn-primary">Ask</button></div>
         </div>
-
-        <div class="card assistant-card">
+        <div class="card">
           <h3>Suggested prompts</h3>
-          <div class="chip-row">
-            <button class="chip" type="button">How can I improve my abstract?</button>
-            <button class="chip" type="button">Give me research topic ideas.</button>
-            <button class="chip" type="button">How do I structure a paper?</button>
-            <button class="chip" type="button">What is CYSR?</button>
-            <button class="chip" type="button">How can students get motivated?</button>
-            <button class="chip" type="button">Explain Nobel-level scientific curiosity.</button>
-          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;"><button class="chip" type="button" style="padding:8px 10px;border-radius:999px;background:#edf3ff;border:1px solid #dfeafe;color:#1d4ed8;font-weight:700;">How can I improve my abstract?</button><button class="chip" type="button" style="padding:8px 10px;border-radius:999px;background:#edf3ff;border:1px solid #dfeafe;color:#1d4ed8;font-weight:700;">Give me research topic ideas.</button></div>
         </div>
       </div>
     </section>
   </main>
 
   <footer>
-    <div class="footer-inner">
-      <span>© 2026 Council of Young Researchers (CYSR)</span>
-      <span>Empowering independent student research</span>
+    <div style="width:min(1180px,calc(100%-32px));margin:0 auto;padding:12px;color:rgba(255,255,255,0.9);background:#0d1b2a;border-radius:8px;">
+      © 2026 Council of Young Researchers (CYSR) — Empowering independent student research
     </div>
   </footer>
 
   <script>
-    const exploreToggle = document.getElementById('exploreToggle');
-    const explorePanel = document.getElementById('explorePanel');
-
-    exploreToggle.addEventListener('click', () => {
-      explorePanel.classList.toggle('open');
+    // Explore panel
+    document.getElementById('exploreToggle').addEventListener('click', () => {
+      document.getElementById('explorePanel').classList.toggle('open');
     });
-
-    document.addEventListener('click', (event) => {
-      if (!explorePanel.contains(event.target) && !exploreToggle.contains(event.target)) {
-        explorePanel.classList.remove('open');
+    document.addEventListener('click', (e) => {
+      if (!document.getElementById('explorePanel').contains(e.target) && e.target.id !== 'exploreToggle') {
+        document.getElementById('explorePanel').classList.remove('open');
       }
     });
 
-    // Live news fetch and rendering
+    // Fetch live news
     async function fetchNews() {
       try {
         const res = await fetch('/api/news');
-        if (!res.ok) throw new Error('Failed to load news');
+        if (!res.ok) throw new Error('news fetch failed');
         const data = await res.json();
         const container = document.getElementById('liveNews');
         container.innerHTML = '';
-        if (!data || !data.items || data.items.length === 0) {
-          document.getElementById('newsFallback').style.display = 'block';
-          return;
-        }
-
+        if (!data || !data.items || data.items.length === 0) { document.getElementById('newsFallback').style.display = 'block'; return; }
         document.getElementById('newsFallback').style.display = 'none';
-
-        data.items.slice(0, 8).forEach(item => {
-          const el = document.createElement('article');
-          el.className = 'news-item';
-          const title = document.createElement('h4');
-          const a = document.createElement('a');
-          a.href = item.link || item.url;
-          a.target = '_blank';
-          a.rel = 'noopener noreferrer';
-          a.textContent = item.title;
-          title.appendChild(a);
-
-          const meta = document.createElement('div');
-          meta.className = 'news-meta';
-          meta.textContent = item.source ? `${item.source} • ${new Date(item.pubDate).toLocaleString()}` : new Date(item.pubDate).toLocaleString();
-
-          const excerpt = document.createElement('p');
-          excerpt.textContent = item.description || '';
-
-          el.appendChild(title);
-          el.appendChild(meta);
-          el.appendChild(excerpt);
-          container.appendChild(el);
+        data.items.slice(0,8).forEach(item => {
+          const el = document.createElement('article'); el.className='news-item';
+          const h4 = document.createElement('h4'); const a = document.createElement('a'); a.href = item.link || item.url; a.target='_blank'; a.rel='noopener noreferrer'; a.textContent = item.title; h4.appendChild(a);
+          const meta = document.createElement('div'); meta.className='news-meta'; meta.textContent = (item.source?item.source+' • ':'') + (item.pubDate?new Date(item.pubDate).toLocaleString():'');
+          const p = document.createElement('p'); p.textContent = item.description || '';
+          el.appendChild(h4); el.appendChild(meta); el.appendChild(p); container.appendChild(el);
         });
-
-      } catch (err) {
-        console.error('News error', err);
-        document.getElementById('newsFallback').style.display = 'block';
-      }
+      } catch (err) { console.error(err); document.getElementById('newsFallback').style.display='block'; }
     }
+    fetchNews(); setInterval(fetchNews, 5*60*1000);
 
-    fetchNews();
-    // Refresh every 5 minutes
-    setInterval(fetchNews, 5 * 60 * 1000);
-
-    // Assistant chat
-    const promptInput = document.getElementById('promptInput');
-    const chatBox = document.getElementById('chatBox');
-    const sendPrompt = document.getElementById('sendPrompt');
-
-    function addBubble(text, type) {
-      const bubble = document.createElement('div');
-      bubble.className = `bubble ${type}`;
-      bubble.textContent = text;
-      chatBox.appendChild(bubble);
-      chatBox.scrollTop = chatBox.scrollHeight;
-    }
-
-    function assistantReply(prompt) {
-      const lower = prompt.toLowerCase();
-      if (lower.includes('abstract')) {
-        return 'A strong abstract should answer four questions: What problem are you solving? Why does it matter? What method did you use? What did you find? Keep it concise, clear, and evidence-driven.';
-      }
-      if (lower.includes('topic') || lower.includes('idea')) {
-        return 'Good research topics often combine a real problem with a tractable method. Try exploring curiosity-driven questions in AI, quantum systems, materials, energy, or applied mathematics.';
-      }
-      if (lower.includes('paper') || lower.includes('structure')) {
-        return 'A strong paper usually starts with a clear research question, then background, method, results, discussion, and conclusion. Keep the flow logical and accessible to readers.';
-      }
-      if (lower.includes('cysr')) {
-        return 'CYSR is a student-led research community that promotes independent thinking, collaborative learning, and open scientific exploration for young scholars.';
-      }
-      if (lower.includes('motivat') || lower.includes('inspire')) {
-        return 'Motivation grows when you connect your work to a meaningful question. Start small, stay curious, and treat each revision as progress toward a deeper understanding.';
-      }
-      if (lower.includes('nobel')) {
-        return 'Nobel-level discoveries often come from deep curiosity, long-term effort, and the courage to ask fundamental questions that others overlook.';
-      }
-      return 'That is a great question. Start by narrowing your research problem, identifying the core question, and reviewing a few relevant papers to sharpen your angle and method.';
-    }
-
-    function handlePrompt() {
-      const prompt = promptInput.value.trim();
-      if (!prompt) return;
-      addBubble(prompt, 'user');
-      promptInput.value = '';
-      setTimeout(() => {
-        addBubble(assistantReply(prompt), 'bot');
-      }, 350);
-    }
-
-    sendPrompt.addEventListener('click', handlePrompt);
-    promptInput.addEventListener('keydown', (event) => { if (event.key === 'Enter') handlePrompt(); });
-    document.querySelectorAll('.chip').forEach((chip) => { chip.addEventListener('click', () => { const text = chip.textContent.trim(); promptInput.value = text; handlePrompt(); }); });
-
-    // PDF upload UI
-    const pdfInput = document.getElementById('pdfFile');
-    const fileLabel = document.getElementById('fileLabel');
-    pdfInput.addEventListener('change', (event) => { const file = event.target.files && event.target.files[0]; if (!file) return; fileLabel.textContent = `✓ ${file.name}`; fileLabel.classList.add('has-file'); });
+    // Assistant
+    const promptInput = document.getElementById('promptInput'); const chatBox = document.getElementById('chatBox');
+    function addBubble(text, cls){ const b = document.createElement('div'); b.className = 'bubble '+cls; b.textContent = text; chatBox.appendChild(b); chatBox.scrollTop = chatBox.scrollHeight; }
+    function assistantReply(q){ const l=q.toLowerCase(); if(l.includes('abstract')) return 'Answer: What/Why/How/Result — concise and specific.'; if(l.includes('topic')) return 'Try combining a problem with a tractable method.'; return 'Try narrowing your question and checking 2-3 recent papers for context.'; }
+    document.getElementById('sendPrompt').addEventListener('click', () => { const q=promptInput.value.trim(); if(!q) return; addBubble(q,'user'); promptInput.value=''; setTimeout(()=>addBubble(assistantReply(q),'bot'),300); });
 
     // Submission form
-    document.getElementById('research-form').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const alertBox = document.getElementById('alert');
-      const author = document.getElementById('author').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const title = document.getElementById('title').value.trim();
-      const institution = document.getElementById('institution').value.trim();
-      const abstract = document.getElementById('abstract').value.trim();
-      const pdfFile = document.getElementById('pdfFile').files[0];
-      if (!author || !email || !title || !abstract || !pdfFile) { alertBox.textContent = 'Please complete all required fields and upload a PDF.'; alertBox.className = 'alert error show'; return; }
-      const formData = new FormData();
-      formData.append('author', author); formData.append('email', email); formData.append('title', title); formData.append('institution', institution || 'N/A'); formData.append('abstract', abstract); formData.append('pdf', pdfFile);
-      const submitBtn = document.getElementById('submitBtn'); submitBtn.disabled = true; submitBtn.textContent = 'Submitting...';
-      try {
-        const response = await fetch('/api/submit', { method: 'POST', body: formData });
-        const result = await response.json();
-        if (!response.ok) throw new Error(result.error || 'Submission failed.');
-        alertBox.textContent = '✅ Submission successful! Your paper has been recorded for review.'; alertBox.className = 'alert success show'; document.getElementById('research-form').reset(); fileLabel.textContent = '📄 Choose PDF'; fileLabel.classList.remove('has-file');
-      } catch (error) {
-        alertBox.textContent = `❌ ${error.message}`; alertBox.className = 'alert error show';
-      } finally { submitBtn.disabled = false; submitBtn.textContent = 'Submit for review'; }
-    });
+    const pdfInput = document.getElementById('pdfFile'); const fileLabel = document.getElementById('fileLabel');
+    pdfInput.addEventListener('change', (e)=>{ if(e.target.files && e.target.files[0]){ fileLabel.textContent = '✓ ' + e.target.files[0].name; fileLabel.classList.add('has-file'); } });
+
+    document.getElementById('research-form').addEventListener('submit', async (e)=>{ e.preventDefault(); const alertBox = document.getElementById('alert'); alertBox.style.display='none'; const author=document.getElementById('author').value.trim(); const email=document.getElementById('email').value.trim(); const title=document.getElementById('title').value.trim(); const institution=document.getElementById('institution').value.trim(); const abstract=document.getElementById('abstract').value.trim(); const pdf=document.getElementById('pdfFile').files[0]; if(!author||!email||!title||!abstract||!pdf){ alertBox.textContent='Please complete all fields and attach a PDF.'; alertBox.style.display='block'; alertBox.style.background='#feeaea'; return; }
+      const fd = new FormData(); fd.append('author',author); fd.append('email',email); fd.append('title',title); fd.append('institution',institution); fd.append('abstract',abstract); fd.append('pdf',pdf);
+      const btn = document.getElementById('submitBtn'); btn.disabled=true; btn.textContent='Submitting...';
+      try{ const res = await fetch('/api/submit',{ method:'POST', body:fd }); const json=await res.json(); if(!res.ok) throw new Error(json.error||'Submission failed'); alertBox.textContent='✓ '+json.message; alertBox.style.display='block'; alertBox.style.background='#e6f9f2'; document.getElementById('research-form').reset(); fileLabel.textContent='📄 Choose PDF'; fileLabel.classList.remove('has-file'); }catch(err){ alertBox.textContent='✗ '+err.message; alertBox.style.display='block'; alertBox.style.background='#feeaea'; } finally{ btn.disabled=false; btn.textContent='Submit for review'; } });
   </script>
 </body>
 </html>
