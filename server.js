@@ -4,9 +4,11 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
+const RSSParser = require('rss-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const parser = new RSSParser();
 
 const uploadsDir = path.join(__dirname, 'uploads');
 const dataDir = path.join(__dirname, 'data');
@@ -136,6 +138,62 @@ app.delete('/api/submissions/:id', (req, res) => {
   submissions.splice(index, 1);
   writeSubmissions(submissions);
   return res.json({ success: true });
+});
+
+const NEWS_FEEDS = [
+  'https://www.thehindu.com/sci-tech/science/feeder/default.rss',
+  'https://indianexpress.com/section/technology/tech-news/feed/',
+  'https://www.ndtv.com/rss/india.xml',
+  'https://www.sciencealert.com/rss'
+];
+
+let newsCache = { items: [], updatedAt: 0 };
+const NEWS_TTL = 5 * 60 * 1000;
+
+app.get('/api/news', async (req, res) => {
+  try {
+    const now = Date.now();
+    if (newsCache.items.length && (now - newsCache.updatedAt) < NEWS_TTL) {
+      return res.json({ items: newsCache.items });
+    }
+
+    const allItems = [];
+
+    await Promise.all(NEWS_FEEDS.map(async (feedUrl) => {
+      try {
+        const feed = await parser.parseURL(feedUrl);
+        const feedTitle = feed.title || 'Science News';
+
+        (feed.items || []).forEach((item) => {
+          const link = item.link || item.guid || '#';
+          const title = item.title || 'Untitled';
+          const description = (item.contentSnippet || item.summary || item.content || '').replace(/\s+/g, ' ').trim();
+          const pubDate = item.isoDate || item.pubDate || new Date().toISOString();
+
+          const cleanItem = {
+            title,
+            link,
+            pubDate,
+            description,
+            source: feedTitle
+          };
+
+          if (title && link) allItems.push(cleanItem);
+        });
+      } catch (err) {
+        console.warn('RSS feed error:', feedUrl, err.message);
+      }
+    }));
+
+    allItems.sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate));
+    const items = allItems.slice(0, 20);
+    newsCache = { items, updatedAt: now };
+
+    return res.json({ items });
+  } catch (err) {
+    console.error('News fetch error:', err);
+    return res.status(500).json({ items: [] });
+  }
 });
 
 app.get('/', (req, res) => {
